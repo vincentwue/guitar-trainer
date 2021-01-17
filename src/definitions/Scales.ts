@@ -1,4 +1,5 @@
 // import { createAllSpecificScalesWithSpecificChords } from "./ChordsAndScales"
+import { SpecificChord } from "./Chords"
 import { Interval, intervals } from "./Intervals"
 import { Note, notes, notesByName } from "./Notes"
 
@@ -8,11 +9,12 @@ export interface SpecificScale {
     scale:Scale,
     notes:Note[],
     rootNote:Note,
+    specificChords?:SpecificChord[],
 
 }
 
 
-function createSpecificScale(rootNote:Note, scale:Scale) : SpecificScale {
+export function createSpecificScale(rootNote:Note, scale:Scale) : SpecificScale {
 
     const res : Note[]= []
 
@@ -47,7 +49,7 @@ interface ScaleDictionary {
 }
 
 export const scales: ScaleDictionary = {
-    "ionisch (dur)": createScale("Dur", [0, 2, 4, 5, 7, 9, 11], [
+    "ionisch (dur)": createScale("ionisch (dur)", [0, 2, 4, 5, 7, 9, 11], [
         "ionisch (dur)",
         "dorisch",
         "phrygisch",
@@ -56,7 +58,7 @@ export const scales: ScaleDictionary = {
         "aeolisch (moll)",
         "lokrisch",
     ]),
-    "harmonisch moll": createScale("harmonisch moll", [0, 2, 3, 5, 7, 8, 11], [
+/*     "harmonisch moll": createScale("harmonisch moll", [0, 2, 3, 5, 7, 8, 11], [
         "harmonisch moll",
         "Locrian 13 or Locrian 6 (half-diminished)",
         "Ionian #5 (augmented)",
@@ -73,7 +75,7 @@ export const scales: ScaleDictionary = {
         "mixolydisch b13",
         "aeolisch b5 (lokrisch #2)",
         "alterierte skala (super lokrisch)",
-    ])
+    ]) */
 }
 
 // user defined type guards

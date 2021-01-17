@@ -49,7 +49,7 @@ export const chords: Chord[] = [
     ]),
     createChord("", [
         ins.Prime,
-        ins.Terz,
+        ins.großeTerz,
         ins.Quinte,
     ]),
     createChord("7", [
