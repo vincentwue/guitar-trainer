@@ -1,24 +1,34 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+import { useRenderableStore } from "./definitions/store"
+import { RenderableArrayComponent } from './components/RenderableArrayComponent';
+import { guitar } from './definitions/interfaces';
+import { createSpecificScale, scales } from './definitions/scales';
+import { notes } from './definitions/notes';
+
 function App() {
+
+  const renderableState = useRenderableStore()
+
+  useEffect(() => {
+    renderableState.add(guitar, "notes", createSpecificScale(notes.C, scales.major))
+  }, [])
+
+  let mappedRenderableArray;
+  if (renderableState?.renderableArrays) {
+
+    mappedRenderableArray = renderableState.renderableArrays.map(renderableArray => {
+      return <RenderableArrayComponent renderableArray={renderableArray} renderableState={renderableState}></RenderableArrayComponent>
+    })
+
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <button onClick={e => {/* renderableState.add() */ }}>add</button>
+     {mappedRenderableArray} 
     </div>
   );
 }

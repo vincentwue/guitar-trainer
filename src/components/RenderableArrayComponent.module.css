@@ -1,0 +1,19 @@
+.wrapper {
+
+}
+
+.notes {
+    background-color: antiquewhite;
+    display: flex;
+    min-width:25px;
+    padding:4px;
+    margin:5px;
+}
+
+.text {
+}
+
+
+.box {
+    display: flex;
+}

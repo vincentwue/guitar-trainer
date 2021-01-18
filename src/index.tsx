@@ -1,4 +1,4 @@
-import "./definitions/index.ts"
+// import "./definitions0/index.ts"
 
 
 import React from 'react';
@@ -6,6 +6,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import "./definitions/generate"
 
 ReactDOM.render(
   <React.StrictMode>
