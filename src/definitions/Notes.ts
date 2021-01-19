@@ -1,6 +1,5 @@
 
-import {Dictionary,Note} from "./interfaces"
-import { intervals } from "./intervals"
+import { Interval, intervals } from "./intervals"
 
 
 export interface Notes {
@@ -16,6 +15,12 @@ export interface Notes {
     A:Note,
     Bb:Note,
     B:Note,
+}
+
+export interface Note {
+    readonly id: string,
+    readonly intervalFromC: Interval,
+    readonly standardColor: string,
 }
 
 export const notes : Notes = {
@@ -36,22 +41,22 @@ export const notes : Notes = {
     },
     Eb:{
         id:"Eb",
-        intervalFromC:intervals.PerfectUnison,
+        intervalFromC:intervals.MinorThird,
         standardColor:"#FFFF00",
     },
     E:{
         id:"E",
-        intervalFromC:intervals.PerfectUnison,
+        intervalFromC:intervals.MajorThird,
         standardColor:"#808000",
     },
     F:{
         id:"F",
-        intervalFromC:intervals.PerfectUnison,
+        intervalFromC:intervals.PerfectForth,
         standardColor:"#00FF00",
     },
     Gb:{
         id:"Gb",
-        intervalFromC:intervals.PerfectUnison,
+        intervalFromC:intervals.Tritone,
         standardColor:"#008000",
     },
     G:{
@@ -61,22 +66,22 @@ export const notes : Notes = {
     },
     Ab:{
         id:"Ab",
-        intervalFromC:intervals.PerfectUnison,
+        intervalFromC:intervals.MinorSixth,
         standardColor:"#008080",
     },
     A:{
         id:"A",
-        intervalFromC:intervals.PerfectUnison,
+        intervalFromC:intervals.MajorSixth,
         standardColor:"#0000FF",
     },
     Bb:{
         id:"Bb",
-        intervalFromC:intervals.PerfectUnison,
+        intervalFromC:intervals.MinorSeventh,
         standardColor:"#000080",
     },
     B:{
         id:"B",
-        intervalFromC:intervals.PerfectUnison,
+        intervalFromC:intervals.MajorSeventh,
         standardColor:"#FF00FF",
     },
 }

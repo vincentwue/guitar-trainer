@@ -2,10 +2,8 @@ import React, { useEffect } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-import { useRenderableStore } from "./definitions/store"
+import { useRenderableStore } from "./utils/store"
 import { RenderableArrayComponent } from './components/RenderableArrayComponent';
-import { guitar } from './definitions/interfaces';
-import { createSpecificScale, scales } from './definitions/scales';
 import { notes } from './definitions/notes';
 
 function App() {
@@ -13,7 +11,7 @@ function App() {
   const renderableState = useRenderableStore()
 
   useEffect(() => {
-    renderableState.add(guitar, "notes", createSpecificScale(notes.C, scales.major))
+    // renderableState.add(guitar, "notes", createSpecificScale(notes.C, scales.major))
   }, [])
 
   let mappedRenderableArray;

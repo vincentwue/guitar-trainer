@@ -1,5 +1,5 @@
 import React from 'react';
-import { RenderableArray, RenderableState, RenderableString } from '../definitions/interfaces';
+import { RenderableArray, RenderableState, RenderableString } from '../definitions/renderables';
 import { hexToRgb } from '../utils/utils';
 import classes from "./RenderableArrayComponent.module.css"
 

@@ -1,5 +1,4 @@
 
-import { Interval, Dictionary } from "./interfaces"
 
 export interface Intervals {
     PerfectUnison: Interval,
@@ -14,6 +13,15 @@ export interface Intervals {
     MajorSixth: Interval,
     MinorSeventh: Interval,
     MajorSeventh: Interval,
+}
+
+export interface Interval {
+    readonly id: string,
+    // readonly octaveName:string,
+    readonly step: number,
+    readonly standardSymbol: string,
+    // readonly octaveSymbol: string,
+    readonly standardColor: string,
 }
 
 // https://en.wikipedia.org/wiki/Interval_(music)#cite_ref-TritoneA4_6-0:~:text=below.-,Number%20of,Interval
@@ -102,3 +110,5 @@ export const intervals: Intervals = {
     },
 
 }
+
+export const intervalsArray : Interval[]= Object.values(intervals)
