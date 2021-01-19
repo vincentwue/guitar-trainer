@@ -73,10 +73,15 @@ export interface Scale {
 
 }
 
-export interface SpecificScale {
+export interface SpecificScale  {
+    readonly isScale:boolean,
     readonly id: string,
     readonly scale: Scale,
+
     readonly notes: Note[],
+    readonly intervals: Interval[],
+
+
     readonly rootNote: Note,
     chords: SpecificChord[][],
 
@@ -157,10 +162,12 @@ function generateSpecificScales(): SpecificScale[] {
 
 
             const specificScale: SpecificScale = {
+                isScale:true,
                 id: rootNote.id + " " + scale.id,
                 scale,
                 notes,
                 rootNote,
+                intervals:scale.intervals,
 
                 chords: [],
                 triads: [],

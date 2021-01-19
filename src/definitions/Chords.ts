@@ -30,6 +30,7 @@ export const chords: RawChords = {
             intervals.PerfectUnison,
             intervals.MajorThird,
             intervals.PerfectFifth,
+            intervals.MinorSeventh,
             intervals.MinorSecond],
         symbol: "7b9",
     },
@@ -61,8 +62,10 @@ export interface RawChord {
 export interface SpecificChord {
     readonly rootNote: Note,
     readonly id: string, // note name plus 
-    readonly notes: Note[],
+
+   readonly notes: Note[],
     readonly intervals: Interval[],
+
     readonly symbol: string,
     presentInScales: SpecificScale[],
 }

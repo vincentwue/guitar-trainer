@@ -1,10 +1,11 @@
 
 
+
 export interface Intervals {
     PerfectUnison: Interval,
     MinorSecond: Interval,
     MajorSecond: Interval,
-    MinorThird:Interval,
+    MinorThird: Interval,
     MajorThird: Interval,
     PerfectForth: Interval,
     Tritone: Interval,
@@ -32,7 +33,7 @@ export const intervals: Intervals = {
         id: "unison",
         step: 0,
         standardSymbol: "root",
-        standardColor: "transparent"
+        standardColor: "#ffffff"
     },
 
     MinorSecond: {
@@ -60,7 +61,7 @@ export const intervals: Intervals = {
         id: "majorThird",
         step: 4,
         standardSymbol: "3",
-        standardColor: "#00751f"
+        standardColor: "#FF7F50"
     },
     PerfectForth: {
         id: "perfectForth",
@@ -72,21 +73,21 @@ export const intervals: Intervals = {
         id: "tritone",
         step: 6,
         standardSymbol: "b5",
-        standardColor: "#00751f"
+        standardColor: "#9FE2BF"
     },
-    
-    
+
+
     PerfectFifth: {
         id: "perfectFifth",
         step: 7,
         standardSymbol: "5",
-        standardColor: "#00751f"
+        standardColor: "#6495ED"
     },
-    
-    
+
+
     MinorSixth: {
         id: "minorSixth",
-        step:8,
+        step: 8,
         standardSymbol: "b13",
         standardColor: "#00751f"
     },
@@ -94,21 +95,22 @@ export const intervals: Intervals = {
         id: "majorSixth",
         step: 9,
         standardSymbol: "13",
-        standardColor: "#00751f"
+        standardColor: "#900C3F"
     },
     MinorSeventh: {
         id: "minorSeventh",
         step: 10,
         standardSymbol: "7",
-        standardColor: "#00751f"
+        standardColor: "#CCCCFF"
     },
     MajorSeventh: {
         id: "majorSeventh",
         step: 11,
         standardSymbol: "Δ",
-        standardColor: "#00751f"
+        standardColor: "#40E0D0"
     },
 
 }
 
-export const intervalsArray : Interval[]= Object.values(intervals)
+export const intervalsArray: Interval[] = Object.values(intervals)
+

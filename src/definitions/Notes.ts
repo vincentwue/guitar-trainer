@@ -27,7 +27,7 @@ export const notes : Notes = {
     C:{
         id:"C",
         intervalFromC:intervals.PerfectUnison,
-        standardColor:"transparent",
+        standardColor:"#ffffff",
     },
     Db:{
         id:"Db",

@@ -2,14 +2,15 @@
 import { specificScales, scales } from "./scales"
 import { getStringInstrument, RawStringInstruments } from './instruments';
 import { specificChords } from "./chords";
+import { Note, notes } from "../definitions/notes";
+import { createRenderablePattern } from "./renderables";
+import { intervals, Interval, intervalsArray } from "../definitions/intervals";
+import "./renderables"
 
-const guitar = getStringInstrument(RawStringInstruments.standardGuitar)
-console.log(guitar)
-export { }
+export function getInterval(from: Note, to: Note): Interval {
 
+    const n = ((to.intervalFromC.step - from.intervalFromC.step) + 12) % 12
 
-console.log(scales)
-console.log(specificScales)
+    return intervalsArray[n]
 
-console.log(specificChords)
-
+}

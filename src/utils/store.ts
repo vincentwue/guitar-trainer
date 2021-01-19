@@ -1,45 +1,42 @@
 import create from "zustand"
-import { RenderableArray,  RenderableNote, RenderableState, RenderableString, } from "../definitions/renderables"
 import { Note, notesArray } from "../definitions/notes"
 import { StringInstrument } from "../definitions/instruments"
+import { RenderablePattern, renderables } from "../definitions/renderables"
 
 
-/* export interface CreateRenderableArray {
-    (stringInstrument: StringInstrument, renderable: Renderable): RenderableArray;
+
+type State = {
+    renderables: RenderablePattern[],
+
+    index1: number,
+    index2: number,
+
+    firstIntervals:boolean,
+    secondIntervals:boolean,
+
+    toggleFirstIntervals:() => void,
+    toggleSecondIntervals:() => void,
+
+    setIndex1: (index: number) => void
+    setIndex2: (index: number) => void
+    secondHidden:boolean,
+    toggleSecondHidden:() => void
 }
 
-let createRenderableArray : CreateRenderableArray;
+export const useSimpleStore = create<State>(set => ({
+    renderables,
 
-createRenderableArray = function(stringInstrument, renderable) {
+    index1:0,
+    index2:0,
 
-    const renderableArray : RenderableArray = {
+    firstIntervals:false,
+    secondIntervals:false,
 
-    }
-
-    return 
-} */
-
-export const useRenderableStore = create<RenderableState>(set => ({
-
-
-    renderableArrays: [],
-
-    add: (stringInstrument, config, renderable) => set(state => {
-
-        const renderableStrings: RenderableString[] = []
-
-
-        return {
-            renderableArrays: []
-        }
-    }),
-    remove: (id) => set(state => {
-
-        return {
-
-        }
-    }),
-
-
-
+    secondHidden:true,
+    
+    setIndex1: (index1) => set(state => ({ index1 })),
+    setIndex2: (index2) => set(state => ({ index2 })),
+    toggleSecondHidden: () => set(state => ({ secondHidden:!state.secondHidden })),
+    toggleFirstIntervals: () => set(state => ({ firstIntervals:!state.firstIntervals })),
+    toggleSecondIntervals: () => set(state => ({ secondIntervals:!state.secondIntervals })),
 }))

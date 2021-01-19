@@ -2,7 +2,7 @@
 
 }
 
-.notes {
+.string {
     background-color: antiquewhite;
     display: flex;
     min-width:25px;
@@ -10,7 +10,8 @@
     margin:5px;
 }
 
-.text {
+.note {
+    width:200px;
 }
 
 
