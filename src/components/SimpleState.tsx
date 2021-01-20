@@ -20,15 +20,19 @@ export default function SimpleState() {
 
         const renderablePattern = state.renderables[state.index1].source as SpecificChord
 
-        presentInScales = renderablePattern.presentInScales.map((e, i) => {
+        presentInScales = renderablePattern.presentInScales
+        // filter to only show scales with specific root note
+        .filter(pattern => pattern.id.split(" ")[0] === state.renderables[state.index1].id.split(" ")[0])
+        .map((specificScale, i) => {
             return <button 
             style={{padding:10, paddingLeft:40,margin:10, fontSize:20, width:500, textAlign:"left"}}
             onClick={e => {
 
-                console.log("d", renderables.indexOf(state.renderables[i]))
-                state.setIndex2(renderables.indexOf(state.renderables[i]))
+                const abc = renderables.map(renderable => renderable.id).indexOf(specificScale.id)
+                console.log("d", {e,abc,specificScale})
+                state.setIndex2(abc)
 
-            }}>{e.id}</button>
+            }}>{specificScale.id}</button>
         })
 
     }

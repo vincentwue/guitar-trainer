@@ -86,7 +86,7 @@ export default function Pattern(props: CellProps) {
                     left: 0,
                     right: 0,
                     bottom: 0,
-                    color: "red",
+                    color: "black",
                     backgroundColor: first.renderableNote.interval === intervals.PerfectUnison? "grey" : colorFirst,
                     borderRadius:10,
                 }}>

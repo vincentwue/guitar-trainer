@@ -15,7 +15,7 @@ type PatternProps = {
 
 export default function Pattern(props: PatternProps) {
 
-  // console.log(props)
+  console.log(props)
 
   const reversedSecondStrings = props.second.strings
 

@@ -16,38 +16,38 @@ export const RawScales: RawScalesInterface = {
             "lokrisch",
         ]
     },
-         HarmonicMinor: {
-            id: "harmonic minor",
-            steps: [2, 1, 2, 2, 1, 3, 1],
-            modes: [
-                "harmonic minor mode",
-                "Locrian 13 or Locrian 6 (half-diminished)",
-                "Ionian #5 (augmented)",
-                "Dorian #11 (or dorian #4) (minor)",
-                "Phrygian dominant (dominant)",
-                "Lydian #2 (major)",
-                "Super locrian bb7 (diminished)",
-            ]
-        },
-        MelodicMinor: {
-            id: "melodic minor",
-            steps: [2, 1, 2, 2, 2, 2, 1],
-            modes: [
-                "melodic minor mode",
-                "dorisch b9",
-                "lydisch augmented",
-                "lydisch dominant",
-                "mixolydisch b13",
-                "aeolisch b5 (lokrisch #2)",
-                "alterierte skala (super lokrisch)",
-            ] 
-        },
+    HarmonicMinor: {
+        id: "harmonic minor",
+        steps: [2, 1, 2, 2, 1, 3, 1],
+        modes: [
+            "harmonic minor mode",
+            "Locrian 13 or Locrian 6 (half-diminished)",
+            "Ionian #5 (augmented)",
+            "Dorian #11 (or dorian #4) (minor)",
+            "Phrygian dominant (dominant)",
+            "Lydian #2 (major)",
+            "Super locrian bb7 (diminished)",
+        ]
+    },
+    MelodicMinor: {
+        id: "melodic minor",
+        steps: [2, 1, 2, 2, 2, 2, 1],
+        modes: [
+            "melodic minor mode",
+            "dorisch b9",
+            "lydisch augmented",
+            "lydisch dominant",
+            "mixolydisch b13",
+            "aeolisch b5 (lokrisch #2)",
+            "alterierte skala (super lokrisch)",
+        ]
+    },
 }
 
 export interface RawScalesInterface {
     Major: RawScale,
-         HarmonicMinor: RawScale,
-        MelodicMinor: RawScale, 
+    HarmonicMinor: RawScale,
+    MelodicMinor: RawScale,
 }
 
 
@@ -73,8 +73,8 @@ export interface Scale {
 
 }
 
-export interface SpecificScale  {
-    readonly isScale:boolean,
+export interface SpecificScale {
+    readonly isScale: boolean,
     readonly id: string,
     readonly scale: Scale,
 
@@ -162,12 +162,12 @@ function generateSpecificScales(): SpecificScale[] {
 
 
             const specificScale: SpecificScale = {
-                isScale:true,
+                isScale: true,
                 id: rootNote.id + " " + scale.id,
                 scale,
                 notes,
                 rootNote,
-                intervals:scale.intervals,
+                intervals: scale.intervals,
 
                 chords: [],
                 triads: [],
