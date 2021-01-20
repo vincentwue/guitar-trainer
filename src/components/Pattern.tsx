@@ -2,7 +2,7 @@ import React from 'react';
 import { RenderablePattern } from '../definitions/renderables';
 // import { RenderableArray, RenderableState } from '../definitions/renderables';
 import { hexToRgb } from '../utils/utils';
-import classes from "./Pattern.module.css"
+// import classes from "./Pattern.module.css"
 import Cell, { DisplayType } from "./Cell"
 
 type PatternProps = {
@@ -67,8 +67,8 @@ export default function Pattern(props: PatternProps) {
   })
 
   return (
-    <div className={classes.wrapper}>
-      <div className={classes.grid} style={{
+    <div >
+      <div  style={{
         margin: 10,
         fontSize: 40,
         display: "grid",

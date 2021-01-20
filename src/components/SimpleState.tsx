@@ -26,7 +26,7 @@ export default function SimpleState() {
             .map((specificScale, i) => {
                 return <div >
                     <button
-                        style={{ padding: 10, paddingLeft: 40, margin: 10, fontSize: 20, width: 900, textAlign: "left" }}
+                        style={{ padding: 10, paddingLeft: 40, margin: 10, fontSize: 20, width: 500, textAlign: "left" }}
                         onClick={e => {
 
                             const abc = renderables.map(renderable => renderable.id).indexOf(specificScale.id)
@@ -34,36 +34,67 @@ export default function SimpleState() {
                             state.setIndex2(abc)
 
                         }}>{specificScale.id}</button>
-                         {"  -- base scale:  "+(specificScale.scale.step+1)+"  " + specificScale.baseSpecificScale?.id}
+                    {"  -- base scale:  " + (specificScale.scale.step + 1) + " of  " + specificScale.baseSpecificScale?.id}
                 </div>
             })
 
     }
 
-    return <div className={classes.wrapper}>
+    return <div  style={{ fontSize: 20, display:"flex", flexDirection:"column" , height:"100%"}}>
 
-        <label>
-            <input type="checkbox" checked={state.secondHidden} onChange={e => state.toggleSecondHidden()}></input>
-            hide second
-        </label>
-        {/*         <label>
+        <div style={{ display: "flex", flexDirection: "row", alignItems: "center" ,fontWeight:'bolder',  fontSize:25, padding:10, borderBottom:"2px solid black", backgroundColor:"#ff8282"}}>
+            simple two layer guitar scale/chord visualizer
+            <div style={{fontSize:17, paddingLeft:20, display:"flex",fontWeight:'bolder', alignItems:"center", justifyContent:"center"}}>
+
+            <a href="https://github.com/vincentwue/guitar-trainer" target="_blank">more info on github</a>
+            </div>
+</div>
+            <div >
+
+            </div>
+
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start" }}>
+
+
+            {/*         <label>
             <input type="checkbox" checked={state.firstIntervals} onChange={e => state.toggleFirstIntervals()}></input>
             first intervals
-        </label>
-        <label>
+            </label>
+            <label>
             <input type="checkbox" checked={state.secondIntervals} onChange={e => state.toggleSecondIntervals()}></input>
             second intervals
         </label> */}
 
-        <select onChange={e => state.setIndex1(parseFloat(e.target.value))} value={state.index1}>
+            <div style={{ width: "100%", display: "flex", padding: 10 }}>
+                <div style={{ width: 500 }}>first layer (choose chord to see its modes):</div>
 
-            {options}
-        </select>
-        <select onChange={e => state.setIndex2(parseFloat(e.target.value))} value={state.index2}>
-            {options}
+                <select onChange={e => state.setIndex1(parseFloat(e.target.value))} style={{ fontSize: 20 }} value={state.index1}>
+
+                    {options}
+                </select>
+            </div>
+            <div style={{ width: "100%", display: "flex", padding: 10 }}>
+
+                <div style={{ width: 500 }}>second layer (just small black dots currently):</div>
+
+                <select onChange={e => state.setIndex2(parseFloat(e.target.value))} style={{ fontSize: 20 }} value={state.index2}>
+                    {options}
 
 
-        </select>
+                </select>
+            </div>
+            <div style={{ width: "100%", display: "flex", margin: 10, marginLeft:200 }}>
+
+                <label>
+                    <input type="checkbox" checked={state.secondHidden} onChange={e => state.toggleSecondHidden()}></input>
+            hide second layer
+        </label>
+            </div>
+        </div>
+
+
+
+
         <Pattern
             secondHidden={state.secondHidden}
             first={state.renderables[state.index1]}
@@ -72,7 +103,7 @@ export default function SimpleState() {
             secondIntervals={state.secondIntervals}
         />
 
-        <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", height: 400, overflow: "auto" }}>
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", height: 1, flexGrow:1, overflow: "auto" }}>
             {presentInScales}
 
         </div>

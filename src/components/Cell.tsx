@@ -106,7 +106,8 @@ export default function Pattern(props: CellProps) {
                     color:"blue",
                     fontSize:25,
                     // background:colorSecond,
-                    background:"black",
+                    background:second.renderableNote.interval === intervals.PerfectUnison ? "red" : "black",
+                    // background:"black",
                     borderRadius:20,
                 }}>
 
