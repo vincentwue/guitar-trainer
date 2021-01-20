@@ -33,7 +33,7 @@ export default function Pattern(props: PatternProps) {
       if (fretIndex === 13) borderLeft = "5px solid black"
       if (fretIndex === 12) borderLeft = "5px solid black"
 
-      return <div style={{
+      return <div  key={fretIndex}  style={{
         gridColumnStart: fretIndex + 1,
         gridColumnEnd: fretIndex + 2,
         gridRowStart: props.first.strings.length - stringIndex,
@@ -54,10 +54,10 @@ export default function Pattern(props: PatternProps) {
     })
 
     return mappedString
-  }).flat()
+  })
 
   const mappedFretNumbers = props.first.fretsArray.map((n, i) => {
-    return <div style={{
+    return <div key={i} style={{
       gridColumnStart: i + 1,
       gridColumnEnd: i + 2,
       gridRowStart: props.first.strings.length + 1,

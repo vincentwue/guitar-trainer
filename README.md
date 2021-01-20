@@ -35,6 +35,14 @@ Save UI state to localStorage.
 
 Show triads and tetrads (and more) for scales.
 
+Correct english/german naming.
+
+## Hint
+
+Check the console with F12 to see the data structure.
+
+Most functionality is present already, but not implemented in the UI.
+
 Life is short,
 and art long,
 

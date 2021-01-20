@@ -12,7 +12,7 @@ export default function SimpleState() {
     console.log(state)
 
     const options = state.renderables.map((renderable, i) => {
-        return <option value={i}>{renderable.id}</option>
+        return <option key={i} value={i}>{renderable.id}</option>
     })
 
     let presentInScales;
@@ -24,13 +24,12 @@ export default function SimpleState() {
             // filter to only show scales with specific root note
             .filter(pattern => pattern.id.split(" ")[0] === state.renderables[state.index1].id.split(" ")[0])
             .map((specificScale, i) => {
-                return <div >
+                return <div key={i} >
                     <button
                         style={{ padding: 10, paddingLeft: 40, margin: 10, fontSize: 20, width: 500, textAlign: "left" }}
                         onClick={e => {
 
                             const abc = renderables.map(renderable => renderable.id).indexOf(specificScale.id)
-                            console.log("d", { e, abc, specificScale })
                             state.setIndex2(abc)
 
                         }}>{specificScale.id}</button>
