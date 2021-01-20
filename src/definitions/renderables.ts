@@ -74,7 +74,7 @@ export function createRenderablePattern(stringInstrument: StringInstrument, rend
 function makeFretsArray(fretscount : number) : nullOrNumber[] {
 
     const array : nullOrNumber[] = []
-    const show = [3,5,7,12,15,17,19,24]
+    const show = [3,5,7,9,12,15,17,19,21,24]
     for (let i = 0; i < fretscount; i++) {
         
         if (show.includes(i)) array.push(i)

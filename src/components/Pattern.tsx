@@ -62,6 +62,7 @@ export default function Pattern(props: PatternProps) {
       gridColumnEnd: i + 2,
       gridRowStart: props.first.strings.length + 1,
       gridRowEnd: props.first.strings.length + 2,
+      textAlign:"center",
       // minWidth:40,
     }}>{n ? n : ""}</div>
   })
