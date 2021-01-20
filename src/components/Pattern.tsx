@@ -3,6 +3,7 @@ import { RenderablePattern } from '../definitions/renderables';
 // import { RenderableArray, RenderableState } from '../definitions/renderables';
 import { hexToRgb } from '../utils/utils';
 import classes from "./Pattern.module.css"
+import Cell, { DisplayType } from "./Cell"
 
 type PatternProps = {
   first: RenderablePattern,
@@ -16,24 +17,66 @@ export default function Pattern(props: PatternProps) {
 
   console.log(props)
 
+  const reversedSecondStrings = props.second.strings.reverse()
 
-  const mappedNotes = props.first.strings.map(string => {
+  const mappedNotes = props.first.strings.reverse().map((string, stringIndex) => {
 
-    const mappedString =  string.map(note => {
-      const color = hexToRgb(note.interval.standardColor)
-      if (note.hidden) return <div className={classes.note + " " + classes.hidden}></div>
-      
-      else return <div style={{ backgroundColor: color }} className={classes.text + " " + classes.note}>{props.firstIntervals ? note.interval.standardSymbol : note.note.id}</div>
+    const mappedString = string.map((renderableNote, fretIndex) => {
+      // const color = hexToRgb(renderableNote.interval.standardColor)
+
+      let borderRight = "2px solid lightgrey";
+      let borderLeft = "2px solid lightgrey";
+      if (fretIndex === 0) borderRight = "5px solid black"
+      if (fretIndex === 11) borderRight = "5px solid black"
+      if (fretIndex === 12) borderRight = "5px solid black"
+      if (fretIndex === 1) borderLeft = "5px solid black"
+      if (fretIndex === 13) borderLeft = "5px solid black"
+      if (fretIndex === 12) borderLeft = "5px solid black"
+
+      return <div style={{
+        gridColumnStart: fretIndex + 1,
+        gridColumnEnd: fretIndex + 2,
+        gridRowStart: stringIndex + 1,
+        gridRowEnd: stringIndex + 2,
+        // backgroundColor: color,
+        borderRight,
+        borderLeft,
+        // minWidth:40,
+      // }}>{note.hidden ? "" : props.firstIntervals ? note.interval.standardSymbol : note.note.id}</div>
+      }}><Cell
+        first={{renderableNote, colors:DisplayType.Intervals, symbols:DisplayType.Notes}}
+        second={{renderableNote:reversedSecondStrings[stringIndex][fretIndex], colors:DisplayType.Intervals, symbols:DisplayType.Notes}}
+      ></Cell></div>
+      // if (note.hidden) return <div className={classes.note + " " + classes.hidden}></div>
+
+      // else return <div style={{ backgroundColor: color }} className={classes.text + " " + classes.note}>{props.firstIntervals ? note.interval.standardSymbol : note.note.id}</div>
     })
 
-    return <div className={classes.string} >
-      {mappedString}
-      </div>
-  }).reverse()
+    return mappedString
+  }).flat()
+
+  const mappedFretNumbers = props.first.fretsArray.map((n, i) => {
+    return <div style={{
+      gridColumnStart: i + 1,
+      gridColumnEnd: i + 2,
+      gridRowStart: props.first.strings.length+1,
+      gridRowEnd: props.first.strings.length + 2,
+      // minWidth:40,
+    }}>{n ? n : ""}</div>
+  })
 
   return (
     <div className={classes.wrapper}>
-       {mappedNotes} 
+      <div className={classes.grid} style={{
+        margin:10,
+        fontSize:40,
+        display: "grid",
+        gridTemplateColumns: "repeat(" + props.first.fretsArray.length + ", 1fr)",
+        gridTemplateRows: "repeat(" + props.first.strings.length + ", 1fr)",
+      }}>
+        {mappedNotes}
+        {mappedFretNumbers}
+      </div>
     </div>
   );
 }

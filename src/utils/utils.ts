@@ -13,5 +13,5 @@ export function hexToRgb(hex: string): string {
         g: parseInt(result[2], 16),
         b: parseInt(result[3], 16)
     }
-    return "rgb(" + rgb.r + "," + rgb.g + "," + rgb.b + ",0.5)"
+    return "rgb(" + rgb.r + "," + rgb.g + "," + rgb.b + ",0.2)"
 }

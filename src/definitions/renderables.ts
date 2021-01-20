@@ -13,17 +13,20 @@ export interface Dictionary<Item> {
 
 
 export interface RenderableNote {
-    readonly interval:Interval,
-    readonly note:Note,
-    readonly hidden:boolean,
+    readonly interval: Interval,
+    readonly note: Note,
+    readonly hidden: boolean,
 }
 
+type nullOrNumber = null | number
 
 export interface RenderablePattern {
 
     readonly id: string,
 
     readonly strings: RenderableNote[][],
+
+    readonly fretsArray: nullOrNumber[]
 
     readonly source: SpecificChord | SpecificScale,
 
@@ -45,9 +48,9 @@ export function createRenderablePattern(stringInstrument: StringInstrument, rend
 
             const interval = getInterval(renderable.rootNote, note)
 
-            
+
             return {
-                interval,note,
+                interval, note,
                 hidden: !renderable.notes.includes(note),
             }
 
@@ -62,15 +65,31 @@ export function createRenderablePattern(stringInstrument: StringInstrument, rend
         notes: renderable.notes,
         source: renderable,
         strings: strings as RenderableNote[][],
-        stringInstrument
+        stringInstrument,
+        fretsArray:makeFretsArray(stringInstrument.fretsCount)
     }
 
 }
 
- export const renderables: RenderablePattern[] = generateAllRenderables()
+function makeFretsArray(fretscount : number) : nullOrNumber[] {
+
+    const array : nullOrNumber[] = []
+    const show = [3,5,7,12,15,17,19,24]
+    for (let i = 0; i < fretscount; i++) {
+        
+        if (show.includes(i)) array.push(i)
+        else array.push(null)
+        
+    }
+
+    return array
+
+}
+
+export const renderables: RenderablePattern[] = generateAllRenderables()
 
 function generateAllRenderables() {
-    
+
     const guitar = getStringInstrument(RawStringInstruments.standardGuitar)
     const renderables: RenderablePattern[] = []
 

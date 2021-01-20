@@ -4,12 +4,12 @@ import { Note, notes, notesArray } from "./notes";
 export const RawStringInstruments: RawStringInstrumentsInterface = {
     standardGuitar:{
         id: "guitar",
-        fretsCount: 24,
+        fretsCount: 25,
         tuning: [notes.E, notes.A, notes.D, notes.G, notes.B, notes.E],
     },
     dropDGuitar:{
         id: "guitar",
-        fretsCount: 24,
+        fretsCount: 25,
         tuning: [notes.D, notes.A, notes.D, notes.G, notes.B, notes.E],
     }
 }
@@ -27,6 +27,8 @@ export interface RawStringInstrument {
 }
 
 export interface StringInstrument {
+    readonly fretsCount: number,
+    readonly tuning: Note[],
     strings: Note[][]
 }
 
@@ -52,7 +54,9 @@ export function getStringInstrument(rawStringInstrument : RawStringInstrument) :
     }
 
     return {
-        strings
+        strings,
+        tuning:rawStringInstrument.tuning,
+        fretsCount:rawStringInstrument.fretsCount
     }
 }
 

@@ -16,7 +16,7 @@ export const RawScales: RawScalesInterface = {
             "lokrisch",
         ]
     },
-    /*     HarmonicMinor: {
+         HarmonicMinor: {
             id: "harmonic minor",
             steps: [2, 1, 2, 2, 1, 3, 1],
             modes: [
@@ -41,13 +41,13 @@ export const RawScales: RawScalesInterface = {
                 "aeolisch b5 (lokrisch #2)",
                 "alterierte skala (super lokrisch)",
             ] 
-        },*/
+        },
 }
 
 export interface RawScalesInterface {
     Major: RawScale,
-    /*     HarmonicMinor: RawScale,
-        MelodicMinor: RawScale, */
+         HarmonicMinor: RawScale,
+        MelodicMinor: RawScale, 
 }
 
 
