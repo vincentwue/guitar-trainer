@@ -85,11 +85,11 @@ export interface SpecificScale {
     readonly rootNote: Note,
     chords: SpecificChord[][],
 
-    
+
     readonly triads: SpecificChord[],
     readonly tetrads: SpecificChord[],
 
-    baseSpecificScale?:SpecificScale
+    baseSpecificScale?: SpecificScale
 }
 
 export const scales: Scale[] = generateScales()
@@ -175,6 +175,8 @@ function generateSpecificScales(): SpecificScale[] {
                 rootNote,
                 intervals: scale.intervals,
 
+                
+
                 chords: [],
                 triads: [],
                 tetrads: [],
@@ -189,17 +191,31 @@ function generateSpecificScales(): SpecificScale[] {
 
     }
 
+    // This part is solved with a ugly hack.
+    // Consider restructuring whole datastructure.
+    // Design ONE interface that represents all wanted information and build small steps towards this goal.
     for (const specificScale of specificScales) {
 
         const stepOfMode = specificScale.scale.step
-        const intervalToRoot = specificScale.scale.intervals[stepOfMode]
+
+        
         const nameOfBaseScale = specificScale.scale.rawScale.modes[0]
-        const rootNoteOfBaseScaleStepsFromC = (specificScale.rootNote.intervalFromC.step + 12 - intervalToRoot.step) % 12
-         const rootNoteOfBaseScale = notesArray.find(note => note.intervalFromC.step === rootNoteOfBaseScaleStepsFromC)
-         
-         specificScale.baseSpecificScale = specificScales.find(spscale => spscale.id === rootNoteOfBaseScale?.id+" "+nameOfBaseScale)
-        //   console.log(rootNoteOfBaseScale+" "+nameOfBaseScale)
-        //  console.log(specificScale.id, { specificScale,  rootNoteOfBaseScale,  rootNoteOfBaseScaleStepsFromC,stepOfMode, intervalToRoot, nameOfBaseScale })
+        const helperScale = specificScales.find(spscale => spscale.id === specificScale.rootNote.id+" " + nameOfBaseScale)
+        if (helperScale) {
+
+            const intervalToRoot = helperScale.scale.intervals[stepOfMode]
+            
+            const rootNoteOfBaseScaleStepsFromC = (specificScale.rootNote.intervalFromC.step + 12 - intervalToRoot.step) % 12
+            const rootNoteOfBaseScale = notesArray.find(note => note.intervalFromC.step === rootNoteOfBaseScaleStepsFromC)
+            
+            
+            
+            specificScale.baseSpecificScale = specificScales.find(spscale => spscale.id === rootNoteOfBaseScale?.id + " " + nameOfBaseScale)
+            console.log(specificScale.id, rootNoteOfBaseScale + " " + nameOfBaseScale)
+            console.log(specificScale.id, { specificScale, rootNoteOfBaseScale, rootNoteOfBaseScaleStepsFromC, stepOfMode, intervalToRoot, nameOfBaseScale })
+        }
+
+
     }
 
 

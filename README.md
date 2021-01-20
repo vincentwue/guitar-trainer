@@ -37,6 +37,8 @@ Show triads and tetrads (and more) for scales.
 
 Correct english/german naming.
 
+Implement UI for more string instruments and different tunings.
+
 ## Hint
 
 Check the console with F12 to see the data structure.
