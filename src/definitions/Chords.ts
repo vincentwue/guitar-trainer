@@ -16,11 +16,22 @@ export const chords: RawChords = {
             intervals.PerfectFifth],
         symbol: "",
     },
+    Major7: {
+        id: "major7",
+        intervals: [
+            intervals.PerfectUnison,
+            intervals.MajorThird,
+            intervals.PerfectFifth,
+            intervals.MajorSeventh,
+        ],
+        symbol: "",
+    },
     Minor7b5: {
         id: "minor7b5",
         intervals: [
             intervals.PerfectUnison,
             intervals.MinorThird,
+            intervals.MinorSeventh,
             intervals.Tritone],
         symbol: "m7b5",
     },
@@ -49,6 +60,7 @@ export interface RawChords {
     Minor7b5: RawChord,
     Chord7b9: RawChord,
     PowerChord: RawChord,
+    Major7: RawChord,
 }
 
 export interface RawChord {

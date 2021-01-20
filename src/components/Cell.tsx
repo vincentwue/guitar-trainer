@@ -14,6 +14,7 @@ export interface RenderableCell {
 export interface CellProps {
     first: RenderableCell,
     second: RenderableCell,
+    secondHidden:boolean
 }
 
 export enum DisplayType {
@@ -94,7 +95,7 @@ export default function Pattern(props: CellProps) {
 
                 <div className="second" style={{
                     position: "absolute",
-                    display: second.renderableNote.hidden ? "none" : "flex",
+                    display: second.renderableNote.hidden || props.secondHidden ? "none" : "flex",
                     alignItems: "center",
                     justifyContent: "center",
                     top: 0,
@@ -107,6 +108,7 @@ export default function Pattern(props: CellProps) {
                 }}>
 
                     {props.second.renderableNote.interval.standardSymbol}
+                    {/* {props.second.renderableNote.note.id} */}
                 </div>
 
             </div>

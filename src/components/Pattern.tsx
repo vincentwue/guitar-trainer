@@ -17,9 +17,11 @@ export default function Pattern(props: PatternProps) {
 
   console.log(props)
 
-  const reversedSecondStrings = props.second.strings.reverse()
+  const reversedSecondStrings = props.second.strings
 
-  const mappedNotes = props.first.strings.reverse().map((string, stringIndex) => {
+  const mappedNotes = props.first.strings.map((string, stringIndex) => {
+
+    console.log({ string, stringIndex })
 
     const mappedString = string.map((renderableNote, fretIndex) => {
       // const color = hexToRgb(renderableNote.interval.standardColor)
@@ -36,16 +38,17 @@ export default function Pattern(props: PatternProps) {
       return <div style={{
         gridColumnStart: fretIndex + 1,
         gridColumnEnd: fretIndex + 2,
-        gridRowStart: stringIndex + 1,
-        gridRowEnd: stringIndex + 2,
+        gridRowStart: props.first.strings.length - stringIndex,
+        gridRowEnd: props.first.strings.length - stringIndex,
         // backgroundColor: color,
         borderRight,
         borderLeft,
         // minWidth:40,
-      // }}>{note.hidden ? "" : props.firstIntervals ? note.interval.standardSymbol : note.note.id}</div>
+        // }}>{note.hidden ? "" : props.firstIntervals ? note.interval.standardSymbol : note.note.id}</div>
       }}><Cell
-        first={{renderableNote, colors:DisplayType.Intervals, symbols:DisplayType.Notes}}
-        second={{renderableNote:reversedSecondStrings[stringIndex][fretIndex], colors:DisplayType.Intervals, symbols:DisplayType.Notes}}
+        secondHidden={props.secondHidden}
+        first={{ renderableNote, colors: DisplayType.Intervals, symbols: DisplayType.Notes }}
+        second={{ renderableNote: reversedSecondStrings[stringIndex][fretIndex], colors: DisplayType.Intervals, symbols: DisplayType.Notes }}
       ></Cell></div>
       // if (note.hidden) return <div className={classes.note + " " + classes.hidden}></div>
 
@@ -59,7 +62,7 @@ export default function Pattern(props: PatternProps) {
     return <div style={{
       gridColumnStart: i + 1,
       gridColumnEnd: i + 2,
-      gridRowStart: props.first.strings.length+1,
+      gridRowStart: props.first.strings.length + 1,
       gridRowEnd: props.first.strings.length + 2,
       // minWidth:40,
     }}>{n ? n : ""}</div>
@@ -68,8 +71,8 @@ export default function Pattern(props: PatternProps) {
   return (
     <div className={classes.wrapper}>
       <div className={classes.grid} style={{
-        margin:10,
-        fontSize:40,
+        margin: 10,
+        fontSize: 40,
         display: "grid",
         gridTemplateColumns: "repeat(" + props.first.fretsArray.length + ", 1fr)",
         gridTemplateRows: "repeat(" + props.first.strings.length + ", 1fr)",
