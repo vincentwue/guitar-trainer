@@ -21,19 +21,22 @@ export default function SimpleState() {
         const renderablePattern = state.renderables[state.index1].source as SpecificChord
 
         presentInScales = renderablePattern.presentInScales
-        // filter to only show scales with specific root note
-        .filter(pattern => pattern.id.split(" ")[0] === state.renderables[state.index1].id.split(" ")[0])
-        .map((specificScale, i) => {
-            return <button 
-            style={{padding:10, paddingLeft:40,margin:10, fontSize:20, width:500, textAlign:"left"}}
-            onClick={e => {
+            // filter to only show scales with specific root note
+            .filter(pattern => pattern.id.split(" ")[0] === state.renderables[state.index1].id.split(" ")[0])
+            .map((specificScale, i) => {
+                return <div >
+                    <button
+                        style={{ padding: 10, paddingLeft: 40, margin: 10, fontSize: 20, width: 900, textAlign: "left" }}
+                        onClick={e => {
 
-                const abc = renderables.map(renderable => renderable.id).indexOf(specificScale.id)
-                console.log("d", {e,abc,specificScale})
-                state.setIndex2(abc)
+                            const abc = renderables.map(renderable => renderable.id).indexOf(specificScale.id)
+                            console.log("d", { e, abc, specificScale })
+                            state.setIndex2(abc)
 
-            }}>{specificScale.id}</button>
-        })
+                        }}>{specificScale.id}</button>
+                         {"  -- base scale:  "+(specificScale.scale.step+1)+"  " + specificScale.baseSpecificScale?.id}
+                </div>
+            })
 
     }
 
@@ -43,7 +46,7 @@ export default function SimpleState() {
             <input type="checkbox" checked={state.secondHidden} onChange={e => state.toggleSecondHidden()}></input>
             hide second
         </label>
-{/*         <label>
+        {/*         <label>
             <input type="checkbox" checked={state.firstIntervals} onChange={e => state.toggleFirstIntervals()}></input>
             first intervals
         </label>
@@ -52,7 +55,7 @@ export default function SimpleState() {
             second intervals
         </label> */}
 
-        <select onChange={e => state.setIndex1(parseFloat(e.target.value))}  value={state.index1}>
+        <select onChange={e => state.setIndex1(parseFloat(e.target.value))} value={state.index1}>
 
             {options}
         </select>
@@ -69,8 +72,8 @@ export default function SimpleState() {
             secondIntervals={state.secondIntervals}
         />
 
-        <div style={{display:"flex", flexDirection:"column", alignItems:"flex-start", height:400, overflow:"auto" }}>
-        {presentInScales}
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", height: 400, overflow: "auto" }}>
+            {presentInScales}
 
         </div>
     </div>

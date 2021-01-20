@@ -1,6 +1,6 @@
 import { SpecificChord, specificChords } from "./chords"
 import { Interval, intervals, intervalsArray } from "./intervals"
-import { Note, notesArray } from "./notes"
+import { Note, notes, notesArray } from "./notes"
 
 export const RawScales: RawScalesInterface = {
     Major: {
@@ -68,9 +68,9 @@ export interface Scale {
     readonly intervals: Interval[],
 
     readonly isMode: boolean,
+    readonly rawScale: RawScale,
 
-    readonly baseScale?: Scale,
-
+    readonly step: number,
 }
 
 export interface SpecificScale {
@@ -85,8 +85,11 @@ export interface SpecificScale {
     readonly rootNote: Note,
     chords: SpecificChord[][],
 
+    
     readonly triads: SpecificChord[],
     readonly tetrads: SpecificChord[],
+
+    baseSpecificScale?:SpecificScale
 }
 
 export const scales: Scale[] = generateScales()
@@ -104,19 +107,22 @@ function generateScales(): Scale[] {
             continue;
         }
 
-        let baseScale: Scale;
         for (let i = 0; i < rawScale.modes.length; i++) {
             const modeString = rawScale.modes[i];
             const steps = [
                 ...rawScale.steps.slice(i, rawScale.modes.length),
                 ...rawScale.steps.slice(0, i)
             ]
-            scales.push({
+            const newScale = {
                 id: modeString,
                 steps,
                 isMode: i !== 0 ? true : false,
                 intervals: generateIntervals(steps),
-            })
+                rawScale: scaleValue,
+                step: i,
+            }
+
+            scales.push(newScale)
         }
 
 
@@ -181,6 +187,19 @@ function generateSpecificScales(): SpecificScale[] {
 
         }
 
+    }
+
+    for (const specificScale of specificScales) {
+
+        const stepOfMode = specificScale.scale.step
+        const intervalToRoot = specificScale.scale.intervals[stepOfMode]
+        const nameOfBaseScale = specificScale.scale.rawScale.modes[0]
+        const rootNoteOfBaseScaleStepsFromC = (specificScale.rootNote.intervalFromC.step + 12 - intervalToRoot.step) % 12
+         const rootNoteOfBaseScale = notesArray.find(note => note.intervalFromC.step === rootNoteOfBaseScaleStepsFromC)
+         
+         specificScale.baseSpecificScale = specificScales.find(spscale => spscale.id === rootNoteOfBaseScale?.id+" "+nameOfBaseScale)
+        //   console.log(rootNoteOfBaseScale+" "+nameOfBaseScale)
+        //  console.log(specificScale.id, { specificScale,  rootNoteOfBaseScale,  rootNoteOfBaseScaleStepsFromC,stepOfMode, intervalToRoot, nameOfBaseScale })
     }
 
 
