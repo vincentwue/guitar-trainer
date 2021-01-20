@@ -3,6 +3,8 @@ import { useSimpleStore } from '../utils/store';
 // import { RenderableArray, RenderableState } from '../definitions/renderables';
 import classes from "./Pattern.module.css"
 import Pattern from "./Pattern"
+import { SpecificChord } from '../definitions/chords';
+import { renderables } from '../definitions/renderables';
 
 export default function SimpleState() {
 
@@ -12,26 +14,45 @@ export default function SimpleState() {
     const options = state.renderables.map((renderable, i) => {
         return <option value={i}>{renderable.id}</option>
     })
+
+    let presentInScales;
+    if (state.renderables[state.index1].source.hasOwnProperty("presentInScales")) {
+
+        const renderablePattern = state.renderables[state.index1].source as SpecificChord
+
+        presentInScales = renderablePattern.presentInScales.map((e, i) => {
+            return <button 
+            style={{padding:10, paddingLeft:40,margin:10, fontSize:20, width:500, textAlign:"left"}}
+            onClick={e => {
+
+                console.log("d", renderables.indexOf(state.renderables[i]))
+                state.setIndex2(renderables.indexOf(state.renderables[i]))
+
+            }}>{e.id}</button>
+        })
+
+    }
+
     return <div className={classes.wrapper}>
 
         <label>
             <input type="checkbox" checked={state.secondHidden} onChange={e => state.toggleSecondHidden()}></input>
             hide second
         </label>
-        <label>
+{/*         <label>
             <input type="checkbox" checked={state.firstIntervals} onChange={e => state.toggleFirstIntervals()}></input>
             first intervals
         </label>
         <label>
             <input type="checkbox" checked={state.secondIntervals} onChange={e => state.toggleSecondIntervals()}></input>
             second intervals
-        </label>
+        </label> */}
 
-        <select onChange={e => state.setIndex1(parseFloat(e.target.value))} >
+        <select onChange={e => state.setIndex1(parseFloat(e.target.value))}  value={state.index1}>
 
             {options}
         </select>
-        <select onChange={e => state.setIndex2(parseFloat(e.target.value))} >
+        <select onChange={e => state.setIndex2(parseFloat(e.target.value))} value={state.index2}>
             {options}
 
 
@@ -43,6 +64,11 @@ export default function SimpleState() {
             firstIntervals={state.firstIntervals}
             secondIntervals={state.secondIntervals}
         />
+
+        <div style={{display:"flex", flexDirection:"column", alignItems:"flex-start", height:400, overflow:"auto" }}>
+        {presentInScales}
+
+        </div>
     </div>
 
 }

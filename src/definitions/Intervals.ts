@@ -33,7 +33,7 @@ export const intervals: Intervals = {
         id: "unison",
         step: 0,
         standardSymbol: "root",
-        standardColor: "#ffffff"
+        standardColor: "#000000"
     },
 
     MinorSecond: {

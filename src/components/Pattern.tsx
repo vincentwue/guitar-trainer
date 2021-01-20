@@ -15,13 +15,11 @@ type PatternProps = {
 
 export default function Pattern(props: PatternProps) {
 
-  console.log(props)
+  // console.log(props)
 
   const reversedSecondStrings = props.second.strings
 
   const mappedNotes = props.first.strings.map((string, stringIndex) => {
-
-    console.log({ string, stringIndex })
 
     const mappedString = string.map((renderableNote, fretIndex) => {
       // const color = hexToRgb(renderableNote.interval.standardColor)
