@@ -98,13 +98,13 @@ export default function SimpleState() {
         </label> */}
 
             <div style={{ width: "100%", display: "flex", padding: 10 }}>
-                <div style={{ width: 500 }}>first layer (choose chord to see its modes):</div>
+                <div style={{ width: 500, marginRight: 20, textAlign: "right" }}>first layer:</div>
 
-                <select  onChange={e => state.setIndex1(parseFloat(e.target.value))} style={{ fontSize: 20 }} value={state.index1}>
+                <select onChange={e => state.setIndex1(parseFloat(e.target.value))} style={{ fontSize: 20 }} value={state.index1}>
 
                     {options}
                 </select>
-                <button style={{marginLeft:20}} onClick={e => {
+                <button style={{ marginLeft: 20 }} onClick={e => {
                     const index = state.index1
                     state.setIndex1(state.index2)
                     state.setIndex2(index)
@@ -112,22 +112,23 @@ export default function SimpleState() {
             </div>
             <div style={{ width: "100%", display: "flex", padding: 10 }}>
 
-                <div style={{ width: 500 }}>second layer (just small black dots currently):</div>
+                <div style={{ width: 500, marginRight: 20, textAlign: "right" }}>second layer:</div>
 
                 <select onChange={e => state.setIndex2(parseFloat(e.target.value))} style={{ fontSize: 20 }} value={state.index2}>
                     {options}
 
 
                 </select>
-            </div>
-            <div style={{ width: "100%", display: "flex", margin: 10, marginLeft: 200 }}>
-
-                <label>
-                    <input type="checkbox" checked={state.secondHidden} onChange={e => state.toggleSecondHidden()}></input>
+                <div style={{ marginLeft:20 }}>
+                    <label>
+                        <input type="checkbox" checked={state.secondHidden} onChange={e => state.toggleSecondHidden()}></input>
             hide second layer
         </label>
-
+                </div>
             </div>
+
+
+
         </div>
 
 
@@ -144,7 +145,7 @@ export default function SimpleState() {
         <div style={{ display: presentInScales ? "flex" : "none", flexDirection: "column", alignItems: "flex-start", height: 1, flexGrow: 1, overflow: "auto" }}>
             {presentInScales}
         </div>
-        <div style={{ display: "flex", flexDirection: "row", justifyContent: "center", height: 1, flexGrow: 1, overflow: "auto" }}>
+        <div style={{ display: containingChords ? "flex" : "none", flexDirection: "row", justifyContent: "center", height: 1, flexGrow: 1, overflow: "auto" }}>
             {containingChords}
         </div>
     </div>
