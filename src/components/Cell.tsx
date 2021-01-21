@@ -82,19 +82,42 @@ export default function Pattern(props: CellProps) {
                     display: first.renderableNote.hidden ? "none" : "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    bottom: 0,
+                    top: "5%",
+                    left: "5%",
+                    bottom: "5%",
+                    right: "5%",
                     color: "black",
-                    backgroundColor: first.renderableNote.interval === intervals.PerfectUnison? "grey" : colorFirst,
-                    borderRadius:10,
+                    backgroundColor: colorFirst,
+                    // backgroundColor: first.renderableNote.interval === intervals.PerfectUnison? "grey" : colorFirst,
+                    borderRadius:20,
+
                 }}>
 
                     {props.first.renderableNote.note.id}
                 </div>
 
                 <div className="second" style={{
+                    position: "absolute",
+                    display: second.renderableNote.hidden || props.secondHidden ? "none" : "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    top: "5%",
+                    left: "5%",
+                    bottom: "5%",
+                    right: "5%",
+                    color:"blue",
+                    fontSize:25,
+                    // background:colorSecond,
+                    // background:second.renderableNote.interval === intervals.PerfectUnison ? "red" : "black",
+                    border:"4px solid " + (second.renderableNote.interval === intervals.PerfectUnison ? "red" : "black"),
+                    // background:"black",
+                    borderRadius:20,
+                }}>
+
+                    {/* {props.second.renderableNote.interval.standardSymbol} */}
+                    {/* {props.second.renderableNote.note.id} */}
+                </div>
+{/*                 <div className="second" style={{
                     position: "absolute",
                     display: second.renderableNote.hidden || props.secondHidden ? "none" : "flex",
                     alignItems: "center",
@@ -111,9 +134,9 @@ export default function Pattern(props: CellProps) {
                     borderRadius:20,
                 }}>
 
-                    {/* {props.second.renderableNote.interval.standardSymbol} */}
-                    {/* {props.second.renderableNote.note.id} */}
-                </div>
+                     {props.second.renderableNote.interval.standardSymbol} 
+                     {props.second.renderableNote.note.id} 
+                </div> */}
 
             </div>
         </StringTemplate>

@@ -24,15 +24,17 @@ export default function Pattern(props: PatternProps) {
     const mappedString = string.map((renderableNote, fretIndex) => {
       // const color = hexToRgb(renderableNote.interval.standardColor)
 
-      let borderRight = "2px solid lightgrey";
-      let borderLeft = "2px solid lightgrey";
+      let borderRight = "4px solid grey";
+      let borderLeft = "4px solid grey";
       if (fretIndex === 0) borderRight = "5px solid black"
       if (fretIndex === 11) borderRight = "5px solid black"
       if (fretIndex === 12) borderRight = "5px solid black"
       if (fretIndex === 1) borderLeft = "5px solid black"
       if (fretIndex === 13) borderLeft = "5px solid black"
       if (fretIndex === 12) borderLeft = "5px solid black"
-
+      if (fretIndex === 23) borderRight = "5px solid black"
+      if (fretIndex === 24) borderLeft = "5px solid black"
+      
       return <div  key={fretIndex}  style={{
         gridColumnStart: fretIndex + 1,
         gridColumnEnd: fretIndex + 2,
@@ -60,8 +62,18 @@ export default function Pattern(props: PatternProps) {
     return <div key={i} style={{
       gridColumnStart: i + 1,
       gridColumnEnd: i + 2,
-      gridRowStart: props.first.strings.length + 1,
-      gridRowEnd: props.first.strings.length + 2,
+      gridRowStart: props.first.strings.length + 2,
+      gridRowEnd: props.first.strings.length + 3,
+      textAlign:"center",
+      // minWidth:40,
+    }}>{n ? n : ""}</div>
+  })
+  const mappedFretNumbers2 = props.first.fretsArray.map((n, i) => {
+    return <div key={i} style={{
+      gridColumnStart: i + 1,
+      gridColumnEnd: i + 2,
+      gridRowStart: 0,
+      gridRowEnd: 1,
       textAlign:"center",
       // minWidth:40,
     }}>{n ? n : ""}</div>
@@ -77,6 +89,7 @@ export default function Pattern(props: PatternProps) {
         gridTemplateRows: "repeat(" + props.first.strings.length + ", 1fr)",
       }}>
         {mappedNotes}
+        {mappedFretNumbers2}
         {mappedFretNumbers}
       </div>
     </div>

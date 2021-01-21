@@ -5,6 +5,7 @@ import classes from "./Pattern.module.css"
 import Pattern from "./Pattern"
 import { SpecificChord } from '../definitions/chords';
 import { renderables } from '../definitions/renderables';
+import { SpecificScale } from '../definitions/scales';
 
 export default function SimpleState() {
 
@@ -20,7 +21,7 @@ export default function SimpleState() {
 
         const renderablePattern = state.renderables[state.index1].source as SpecificChord
 
-        presentInScales = renderablePattern.presentInScales
+        presentInScales = renderablePattern.presentInScales.filter(e => !e.id.includes("-del"))
             // filter to only show scales with specific root note
             .filter(pattern => pattern.id.split(" ")[0] === state.renderables[state.index1].id.split(" ")[0])
             .map((specificScale, i) => {
@@ -39,18 +40,50 @@ export default function SimpleState() {
 
     }
 
-    return <div  style={{ fontSize: 20, display:"flex", flexDirection:"column" , height:"100%"}}>
+    let containingChords;
 
-        <div style={{ display: "flex", flexDirection: "row", alignItems: "center" ,fontWeight:'bolder',  fontSize:25, padding:10, borderBottom:"2px solid black", backgroundColor:"#ff8282"}}>
-            simple two layer guitar scale/chord visualizer
-            <div style={{fontSize:17, paddingLeft:20, display:"flex",fontWeight:'bolder', alignItems:"center", justifyContent:"center"}}>
+    if (state.renderables[state.index1].source.hasOwnProperty("autoChords")) {
 
-            <a href="https://github.com/vincentwue/guitar-trainer" target="_blank">more info on github</a>
+        const specificScale = state.renderables[state.index1].source as SpecificScale
+
+        if (specificScale.autoChords) {
+
+            containingChords = specificScale.autoChords.map((chord, i) => {
+
+                // const specificChord  = chord as SpecificChord
+
+                console.log(chord)
+
+                return <button style={{ fontSize: 30, padding: 20, margin: 20, height: 120 }} key={i} onClick={e => {
+                    const renderable = renderables.find(r => r.id === chord.id)
+                    if (renderable) {
+
+                        const index = renderables.indexOf(renderable)
+                        state.setIndex2(index)
+                    }
+                }}>{(i + 1)}
+                    <br></br>
+                    {chord.id}
+                </button>
+            })
+        }
+
+
+    }
+
+
+    return <div style={{ fontSize: 20, display: "flex", flexDirection: "column", height: "100%" }}>
+
+        <div style={{ display: "flex", flexDirection: "row", alignItems: "center", fontWeight: 'bolder', fontSize: 25, padding: 10, borderBottom: "2px solid black", backgroundColor: "#ff8282" }}>
+            Guitar scale/chord visualizer
+            <div style={{ fontSize: 17, paddingLeft: 20, display: "flex", fontWeight: 'bolder', alignItems: "center", justifyContent: "center" }}>
+
+                <a href="https://github.com/vincentwue/guitar-trainer" target="_blank">more info on github</a>
             </div>
-</div>
-            <div >
+        </div>
+        <div >
 
-            </div>
+        </div>
 
         <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start" }}>
 
@@ -67,10 +100,15 @@ export default function SimpleState() {
             <div style={{ width: "100%", display: "flex", padding: 10 }}>
                 <div style={{ width: 500 }}>first layer (choose chord to see its modes):</div>
 
-                <select onChange={e => state.setIndex1(parseFloat(e.target.value))} style={{ fontSize: 20 }} value={state.index1}>
+                <select  onChange={e => state.setIndex1(parseFloat(e.target.value))} style={{ fontSize: 20 }} value={state.index1}>
 
                     {options}
                 </select>
+                <button style={{marginLeft:20}} onClick={e => {
+                    const index = state.index1
+                    state.setIndex1(state.index2)
+                    state.setIndex2(index)
+                }}>invert</button>
             </div>
             <div style={{ width: "100%", display: "flex", padding: 10 }}>
 
@@ -82,12 +120,13 @@ export default function SimpleState() {
 
                 </select>
             </div>
-            <div style={{ width: "100%", display: "flex", margin: 10, marginLeft:200 }}>
+            <div style={{ width: "100%", display: "flex", margin: 10, marginLeft: 200 }}>
 
                 <label>
                     <input type="checkbox" checked={state.secondHidden} onChange={e => state.toggleSecondHidden()}></input>
             hide second layer
         </label>
+
             </div>
         </div>
 
@@ -102,9 +141,11 @@ export default function SimpleState() {
             secondIntervals={state.secondIntervals}
         />
 
-        <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", height: 1, flexGrow:1, overflow: "auto" }}>
+        <div style={{ display: presentInScales ? "flex" : "none", flexDirection: "column", alignItems: "flex-start", height: 1, flexGrow: 1, overflow: "auto" }}>
             {presentInScales}
-
+        </div>
+        <div style={{ display: "flex", flexDirection: "row", justifyContent: "center", height: 1, flexGrow: 1, overflow: "auto" }}>
+            {containingChords}
         </div>
     </div>
 

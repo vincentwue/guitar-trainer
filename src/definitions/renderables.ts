@@ -98,7 +98,7 @@ function generateAllRenderables() {
         renderables.push(renderablePattern)
     }
 
-    return renderables
+    return renderables.filter(e => !e.id.includes("-del"))
 
 }
 

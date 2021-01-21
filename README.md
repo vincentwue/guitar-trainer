@@ -1,4 +1,4 @@
-# simple two layer guitar scale/chord visualizer
+# Guitar scale/chord visualizer
 
 [Visit guitar trainer (hostet on github pages)](https://vincentwue.github.io/guitar-trainer/)
 
@@ -41,7 +41,7 @@ Implement UI for more string instruments and different tunings.
 
 ## Hint
 
-Check the console with F12 to see the data structure.
+Press F12 to see the datastructure in the console.
 
 Most functionality is present already, but not implemented in the UI.
 

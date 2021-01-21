@@ -1,4 +1,4 @@
-import { SpecificChord, specificChords } from "./chords"
+import { SpecificAutoChord, SpecificChord, specificChords } from "./chords"
 import { Interval, intervals, intervalsArray } from "./intervals"
 import { Note, notes, notesArray } from "./notes"
 
@@ -42,12 +42,31 @@ export const RawScales: RawScalesInterface = {
             "alterierte skala (super lokrisch)",
         ]
     },
+    Chromatic: {
+        id: "chromatic",
+        steps: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,],
+        modes: [
+            "chromatic",
+            "chromatic-del",
+            "chromatic-del",
+            "chromatic-del",
+            "chromatic-del",
+            "chromatic-del",
+            "chromatic-del",
+            "chromatic-del",
+            "chromatic-del",
+            "chromatic-del",
+            "chromatic-del",
+            "chromatic-del",
+        ]
+    },
 }
 
 export interface RawScalesInterface {
     Major: RawScale,
     HarmonicMinor: RawScale,
     MelodicMinor: RawScale,
+    Chromatic: RawScale,
 }
 
 
@@ -84,6 +103,7 @@ export interface SpecificScale {
 
     readonly rootNote: Note,
     chords: SpecificChord[][],
+    autoChords?: SpecificChord[],
 
 
     readonly triads: SpecificChord[],
@@ -175,7 +195,7 @@ function generateSpecificScales(): SpecificScale[] {
                 rootNote,
                 intervals: scale.intervals,
 
-                
+
 
                 chords: [],
                 triads: [],
@@ -184,6 +204,8 @@ function generateSpecificScales(): SpecificScale[] {
 
             const chords = generateSpecificChords(specificScale)
             specificScale.chords = chords.chords
+
+            specificScale.autoChords = generateSpecificAutoChords(specificScale)
 
             specificScales.push(specificScale)
 
@@ -198,21 +220,21 @@ function generateSpecificScales(): SpecificScale[] {
 
         const stepOfMode = specificScale.scale.step
 
-        
+
         const nameOfBaseScale = specificScale.scale.rawScale.modes[0]
-        const helperScale = specificScales.find(spscale => spscale.id === specificScale.rootNote.id+" " + nameOfBaseScale)
+        const helperScale = specificScales.find(spscale => spscale.id === specificScale.rootNote.id + " " + nameOfBaseScale)
         if (helperScale) {
 
             const intervalToRoot = helperScale.scale.intervals[stepOfMode]
-            
+
             const rootNoteOfBaseScaleStepsFromC = (specificScale.rootNote.intervalFromC.step + 12 - intervalToRoot.step) % 12
             const rootNoteOfBaseScale = notesArray.find(note => note.intervalFromC.step === rootNoteOfBaseScaleStepsFromC)
-            
-            
-            
+
+
+
             specificScale.baseSpecificScale = specificScales.find(spscale => spscale.id === rootNoteOfBaseScale?.id + " " + nameOfBaseScale)
-            console.log(specificScale.id, rootNoteOfBaseScale + " " + nameOfBaseScale)
-            console.log(specificScale.id, { specificScale, rootNoteOfBaseScale, rootNoteOfBaseScaleStepsFromC, stepOfMode, intervalToRoot, nameOfBaseScale })
+            // console.log(specificScale.id, rootNoteOfBaseScale + " " + nameOfBaseScale)
+            // console.log(specificScale.id, { specificScale, rootNoteOfBaseScale, rootNoteOfBaseScaleStepsFromC, stepOfMode, intervalToRoot, nameOfBaseScale })
         }
 
 
@@ -220,6 +242,44 @@ function generateSpecificScales(): SpecificScale[] {
 
 
     return specificScales
+}
+
+function generateSpecificAutoChords(specificScale: SpecificScale): SpecificChord[] {
+
+
+    //TODO implement
+    const longNotes = [...specificScale.notes, ...specificScale.notes, ...specificScale.notes]
+
+    const tetradsNotes = []
+
+    for (const note of specificScale.notes) {
+        const index = longNotes.indexOf(note)
+        const tetrad = []
+        for (let i = index; i < index + 8; i += 2) {
+            tetrad.push(longNotes[i])
+        }
+        tetradsNotes.push(tetrad)
+    }
+
+    const autoChords : any = tetradsNotes
+
+    for (const specificChord of specificChords) {
+        for (let i = 0; i < tetradsNotes.length; i++) {
+            const tetrad = tetradsNotes[i];
+
+            if (tetrad.length === specificChord.notes.length && specificChord.notes[0] === tetrad[0]) {
+                if (tetrad.every(v => specificChord.notes.includes(v))) {
+                    autoChords[i]=specificChord
+                }
+            }
+        }
+    }
+    // console.log("chord", specificScale.id, "found", { autoChords })
+
+    // console.log(specificScale.id, { specificScale, longNotes, tetradsNotes })
+
+
+    return autoChords
 }
 
 function generateSpecificChords(specificScale: SpecificScale): { chords: SpecificChord[][], tetrads: SpecificChord[], triads: SpecificChord[] } {

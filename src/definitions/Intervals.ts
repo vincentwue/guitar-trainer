@@ -40,40 +40,40 @@ export const intervals: Intervals = {
         id: "minorSecond",
         step: 1,
         standardSymbol: "b9",
-        standardColor: "#cf0e00"
+        standardColor: "#9e006f"
     },
 
     MajorSecond: {
         id: "majorSecond",
         step: 2,
         standardSymbol: "9",
-        standardColor: "#cf4f00"
+        standardColor: "#ff00b3"
     },
 
     MinorThird: {
         id: "minorThird",
         step: 3,
         standardSymbol: "b3",
-        standardColor: "#72cf00"
+        standardColor: "#b7ff42"
     },
 
     MajorThird: {
         id: "majorThird",
         step: 4,
         standardSymbol: "3",
-        standardColor: "#FF7F50"
+        standardColor: "#7dc900"
     },
     PerfectForth: {
         id: "perfectForth",
         step: 5,
         standardSymbol: "11",
-        standardColor: "#00751f"
+        standardColor: "#f7e886"
     },
     Tritone: {
         id: "tritone",
         step: 6,
         standardSymbol: "b5",
-        standardColor: "#9FE2BF"
+        standardColor: "#ad6500"
     },
 
 
@@ -81,7 +81,7 @@ export const intervals: Intervals = {
         id: "perfectFifth",
         step: 7,
         standardSymbol: "5",
-        standardColor: "#6495ED"
+        standardColor: "#ffdd00"
     },
 
 
@@ -89,25 +89,25 @@ export const intervals: Intervals = {
         id: "minorSixth",
         step: 8,
         standardSymbol: "b13",
-        standardColor: "#00751f"
+        standardColor: "#ff0019"
     },
     MajorSixth: {
         id: "majorSixth",
         step: 9,
         standardSymbol: "13",
-        standardColor: "#900C3F"
+        standardColor: "#d42c3d"
     },
     MinorSeventh: {
         id: "minorSeventh",
         step: 10,
         standardSymbol: "7",
-        standardColor: "#CCCCFF"
+        standardColor: "#0073ff"
     },
     MajorSeventh: {
         id: "majorSeventh",
         step: 11,
         standardSymbol: "Δ",
-        standardColor: "#40E0D0"
+        standardColor: "#00eaff"
     },
 
 }
