@@ -5,7 +5,7 @@ import classes from "./Pattern.module.css"
 import Pattern from "./Pattern"
 import { SpecificChord } from '../definitions/chords';
 import { renderables } from '../definitions/renderables';
-import { SpecificScale } from '../definitions/scales';
+import { SpecificScale, specificScales } from '../definitions/scales';
 
 export default function SimpleState() {
 
@@ -54,7 +54,7 @@ export default function SimpleState() {
 
                 console.log(chord)
 
-                return <button style={{ fontSize: 30, padding: 20, margin: 20, height: 120 }} key={i} onClick={e => {
+                return <button style={{ fontSize: 20, padding: 10, margin: 20 }} key={i} onClick={e => {
                     const renderable = renderables.find(r => r.id === chord.id)
                     if (renderable) {
 
@@ -64,6 +64,8 @@ export default function SimpleState() {
                 }}>{(i + 1)}
                     <br></br>
                     {chord.id}
+                    <br></br>
+                    {specificScale.scale.rawScale.modes[i]}
                 </button>
             })
         }
@@ -78,7 +80,7 @@ export default function SimpleState() {
             Guitar scale/chord visualizer
             <div style={{ fontSize: 17, paddingLeft: 20, display: "flex", fontWeight: 'bolder', alignItems: "center", justifyContent: "center" }}>
 
-                <a href="https://github.com/vincentwue/guitar-trainer" target="_blank">more info on github</a>
+                <a href="https://github.com/vincentwue/guitar-trainer" target="_blank">more information on github</a>
             </div>
         </div>
         <div >
