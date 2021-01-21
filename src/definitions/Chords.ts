@@ -87,6 +87,7 @@ export const chords: RawChords = {
             intervals.PerfectUnison,
             intervals.MajorThird,
             intervals.Tritone,
+            intervals.PerfectFifth,
             intervals.MinorSeventh,
         ],
         symbol: "7#11",
