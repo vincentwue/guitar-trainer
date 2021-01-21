@@ -100,13 +100,13 @@ export const chords: RawChords = {
         symbol: "5",
     },
     MajorB13: {
-        id: "Δb13",
+        id: "Δ#5",
         intervals: [
             intervals.PerfectUnison,
             intervals.MajorThird,
             intervals.MinorSixth,
             intervals.MajorSeventh],
-        symbol: "Δb13",
+        symbol: "Δ#5",
     },
     Dim7: {
         id: "°7",
@@ -118,13 +118,13 @@ export const chords: RawChords = {
         symbol: "°7",
     },
     b9b13: {
-        id: "b9b13",
+        id: "#5b9",
         intervals: [
             intervals.PerfectUnison,
             intervals.MinorSecond,
             intervals.MajorThird,
             intervals.MinorSixth],
-        symbol: "b9b13",
+        symbol: "#5b9",
     },
     MinorMajor7: {
         id: "_Δ",
