@@ -171,6 +171,42 @@ export const chords: RawChords = {
             intervals.MinorSixth],
         symbol: "b6",
     },
+    Minor9: {
+        id: "_9",
+        intervals: [
+            intervals.PerfectUnison,
+            intervals.MinorThird,
+            intervals.PerfectFifth,
+            intervals.MajorSecond],
+        symbol: "_9",
+    },
+    Major9: {
+        id: "9",
+        intervals: [
+            intervals.PerfectUnison,
+            intervals.MajorThird,
+            intervals.PerfectFifth,
+            intervals.MajorSecond],
+        symbol: "9",
+    },
+    Minorb9: {
+        id: "_b9",
+        intervals: [
+            intervals.PerfectUnison,
+            intervals.MinorThird,
+            intervals.PerfectFifth,
+            intervals.MinorSecond],
+        symbol: "_b9",
+    },
+    Majorb9: {
+        id: "b9",
+        intervals: [
+            intervals.PerfectUnison,
+            intervals.MajorThird,
+            intervals.PerfectFifth,
+            intervals.MinorSecond],
+        symbol: "b9",
+    },
 }
 
 export interface RawChords {
@@ -191,10 +227,17 @@ export interface RawChords {
     Dim7:RawChord,
     b9b13:RawChord,
     MinorMajor7:RawChord,
+
     Minor6:RawChord,
     Minorb6:RawChord,
     Major6:RawChord,
     Majorb6:RawChord,
+
+    Minor9:RawChord,
+    Major9:RawChord,
+
+    Majorb9:RawChord,
+    Minorb9:RawChord,
 
     
 }
