@@ -134,6 +134,25 @@ export const chords: RawChords = {
             intervals.MajorSeventh],
         symbol: "_Δ",
     },
+    Sus4: {
+        id: "7sus4",
+        intervals: [
+            intervals.PerfectUnison,
+            intervals.PerfectForth,
+            intervals.PerfectFifth,
+            intervals.MinorSeventh],
+        symbol: "sus4",
+    },
+    NineSus4: {
+        id: "79sus4",
+        intervals: [
+            intervals.PerfectUnison,
+            intervals.PerfectForth,
+            intervals.PerfectFifth,
+            intervals.MinorSeventh,
+            intervals.MajorSecond],
+        symbol: "79sus4",
+    },
 }
 
 export interface RawChords {
@@ -154,8 +173,12 @@ export interface RawChords {
     Dim7:RawChord,
     b9b13:RawChord,
     MinorMajor7:RawChord,
-
     
+    
+    Sus4:RawChord,
+    NineSus4:RawChord,
+
+
 }
 
 export interface RawChord {
