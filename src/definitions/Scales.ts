@@ -1,6 +1,7 @@
-import { SpecificAutoChord, SpecificChord, specificChords } from "./chords"
+
 import { Interval, intervals, intervalsArray } from "./intervals"
 import { Note, notes, notesArray } from "./notes"
+import { SpecificAutoChord, SpecificChord, specificChords } from "./chords"
 
 export const RawScales: RawScalesInterface = {
     Major: {
@@ -60,6 +61,78 @@ export const RawScales: RawScalesInterface = {
             "chromatic-del",
         ]
     },
+    MinorPentatonic: {
+        id: "minor pentatonic",
+        steps: [3, 2, 2, 3, 2],
+        modes: [
+            "minor pentatonic",
+            "pentatonic-del",
+            "pentatonic-del",
+            "pentatonic-del",
+            "pentatonic-del",
+        ]
+    },
+    MajorPentatonic: {
+        id: "major pentatonic",
+        steps: [2, 2, 3, 2, 3],
+        modes: [
+            "major pentatonic",
+            "pentatonic-del",
+            "pentatonic-del",
+            "pentatonic-del",
+            "pentatonic-del",
+        ]
+    },
+    MinorPentatonicBlues: {
+        id: "minor blues pentatonic",
+        steps: [3, 2, 1, 1, 3, 2],
+        modes: [
+            "minor blues pentatonic",
+            "pentatonic-del",
+            "pentatonic-del",
+            "pentatonic-del",
+            "pentatonic-del",
+            "pentatonic-del",
+        ]
+    },
+    MajorPentatonicBlues: {
+        id: "major blues pentatonic",
+        steps: [2, 1, 1, 3, 2, 3],
+        modes: [
+            "major blues pentatonic",
+            "pentatonic-del",
+            "pentatonic-del",
+            "pentatonic-del",
+            "pentatonic-del",
+            "pentatonic-del",
+        ]
+    },
+    BluesRocknRoll: {
+        id: "blues rock n roll",
+        steps: [2, 1, 1, 1, 1, 1, 2, 1, 2],
+        modes: [
+            "blues rock n roll",
+            "pentatonic-del",
+            "pentatonic-del",
+            "pentatonic-del",
+            "pentatonic-del",
+            "pentatonic-del",
+            "pentatonic-del",
+            "pentatonic-del",
+            "pentatonic-del",
+        ]
+    },
+    BBKingBlues: {
+        id: "B.B. King blues",
+        steps: [3,3,1,1,2],
+        modes: [
+            "B.B. King blues",
+            "pentatonic-del",
+            "pentatonic-del",
+            "pentatonic-del",
+            "pentatonic-del",
+        ]
+    },
 }
 
 export interface RawScalesInterface {
@@ -67,6 +140,12 @@ export interface RawScalesInterface {
     HarmonicMinor: RawScale,
     MelodicMinor: RawScale,
     Chromatic: RawScale,
+    MajorPentatonic: RawScale,
+    MinorPentatonic: RawScale,
+    MajorPentatonicBlues: RawScale,
+    MinorPentatonicBlues: RawScale,
+    BluesRocknRoll: RawScale,
+    BBKingBlues: RawScale,
 }
 
 
@@ -227,6 +306,9 @@ function generateSpecificScales(): SpecificScale[] {
 
             const intervalToRoot = helperScale.scale.intervals[stepOfMode]
 
+            // hacky exception
+            // if (specificScale.rootNote.intervalFromC) continue;
+
             const rootNoteOfBaseScaleStepsFromC = (specificScale.rootNote.intervalFromC.step + 12 - intervalToRoot.step) % 12
             const rootNoteOfBaseScale = notesArray.find(note => note.intervalFromC.step === rootNoteOfBaseScaleStepsFromC)
 
@@ -261,7 +343,7 @@ function generateSpecificAutoChords(specificScale: SpecificScale): SpecificChord
         tetradsNotes.push(tetrad)
     }
 
-    const autoChords : any = tetradsNotes
+    const autoChords: any = tetradsNotes
 
     for (const specificChord of specificChords) {
         for (let i = 0; i < tetradsNotes.length; i++) {
@@ -269,7 +351,7 @@ function generateSpecificAutoChords(specificScale: SpecificScale): SpecificChord
 
             if (tetrad.length === specificChord.notes.length && specificChord.notes[0] === tetrad[0]) {
                 if (tetrad.every(v => specificChord.notes.includes(v))) {
-                    autoChords[i]=specificChord
+                    autoChords[i] = specificChord
                 }
             }
         }

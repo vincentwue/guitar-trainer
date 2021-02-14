@@ -87,6 +87,7 @@ export const chords: RawChords = {
             intervals.PerfectUnison,
             intervals.MajorThird,
             intervals.Tritone,
+            intervals.PerfectFifth,
             intervals.MinorSeventh,
         ],
         symbol: "7#11",
@@ -99,13 +100,13 @@ export const chords: RawChords = {
         symbol: "5",
     },
     MajorB13: {
-        id: "Δb13",
+        id: "Δ#5",
         intervals: [
             intervals.PerfectUnison,
             intervals.MajorThird,
             intervals.MinorSixth,
             intervals.MajorSeventh],
-        symbol: "Δb13",
+        symbol: "Δ#5",
     },
     Dim7: {
         id: "°7",
@@ -117,13 +118,13 @@ export const chords: RawChords = {
         symbol: "°7",
     },
     b9b13: {
-        id: "b9b13",
+        id: "#5b9",
         intervals: [
             intervals.PerfectUnison,
             intervals.MinorSecond,
             intervals.MajorThird,
             intervals.MinorSixth],
-        symbol: "b9b13",
+        symbol: "#5b9",
     },
     MinorMajor7: {
         id: "_Δ",
@@ -133,6 +134,78 @@ export const chords: RawChords = {
             intervals.PerfectFifth,
             intervals.MajorSeventh],
         symbol: "_Δ",
+    },
+    Minor6: {
+        id: "_6",
+        intervals: [
+            intervals.PerfectUnison,
+            intervals.MinorThird,
+            intervals.PerfectFifth,
+            intervals.MajorSixth],
+        symbol: "_6",
+    },
+    Major6: {
+        id: "6",
+        intervals: [
+            intervals.PerfectUnison,
+            intervals.MajorThird,
+            intervals.PerfectFifth,
+            intervals.MajorSixth],
+        symbol: "6",
+    },
+    Minorb6: {
+        id: "_b6",
+        intervals: [
+            intervals.PerfectUnison,
+            intervals.MinorThird,
+            intervals.PerfectFifth,
+            intervals.MinorSixth],
+        symbol: "_b6",
+    },
+    Majorb6: {
+        id: "b6",
+        intervals: [
+            intervals.PerfectUnison,
+            intervals.MajorThird,
+            intervals.PerfectFifth,
+            intervals.MinorSixth],
+        symbol: "b6",
+    },
+    Minor9: {
+        id: "_9",
+        intervals: [
+            intervals.PerfectUnison,
+            intervals.MinorThird,
+            intervals.PerfectFifth,
+            intervals.MajorSecond],
+        symbol: "_9",
+    },
+    Major9: {
+        id: "9",
+        intervals: [
+            intervals.PerfectUnison,
+            intervals.MajorThird,
+            intervals.PerfectFifth,
+            intervals.MajorSecond],
+        symbol: "9",
+    },
+    Minorb9: {
+        id: "_b9",
+        intervals: [
+            intervals.PerfectUnison,
+            intervals.MinorThird,
+            intervals.PerfectFifth,
+            intervals.MinorSecond],
+        symbol: "_b9",
+    },
+    Majorb9: {
+        id: "b9",
+        intervals: [
+            intervals.PerfectUnison,
+            intervals.MajorThird,
+            intervals.PerfectFifth,
+            intervals.MinorSecond],
+        symbol: "b9",
     },
     Sus4: {
         id: "7sus4",
@@ -152,7 +225,7 @@ export const chords: RawChords = {
             intervals.MinorSeventh,
             intervals.MajorSecond],
         symbol: "79sus4",
-    },
+    }
 }
 
 export interface RawChords {
@@ -168,15 +241,27 @@ export interface RawChords {
     Chord7: RawChord,
     PerfectUnison: RawChord,
 
-    
-    MajorB13:RawChord,
-    Dim7:RawChord,
-    b9b13:RawChord,
-    MinorMajor7:RawChord,
-    
-    
-    Sus4:RawChord,
-    NineSus4:RawChord,
+
+    MajorB13: RawChord,
+    Dim7: RawChord,
+    b9b13: RawChord,
+    MinorMajor7: RawChord,
+
+    Minor6: RawChord,
+    Minorb6: RawChord,
+    Major6: RawChord,
+    Majorb6: RawChord,
+
+    Minor9: RawChord,
+    Major9: RawChord,
+
+    Majorb9: RawChord,
+    Minorb9: RawChord,
+
+
+
+    Sus4: RawChord,
+    NineSus4: RawChord,
 
 
 }
@@ -192,10 +277,10 @@ export interface RawChord {
 export interface SpecificChord {
     readonly rootNote: Note,
     readonly id: string, // note name plus 
-    
+
     readonly notes: Note[],
     readonly intervals: Interval[],
-    
+
     readonly symbol: string,
     presentInScales: SpecificScale[],
 }
@@ -203,9 +288,9 @@ export interface SpecificChord {
 export interface SpecificAutoChord {
     readonly id: string, // note name plus 
     specificChord: SpecificChord | null,
-    intervals:Interval[],
-    notes:Note[],
-    rootNoe:Note,
+    intervals: Interval[],
+    notes: Note[],
+    rootNoe: Note,
     readonly symbol: string, // 
     presentInScales: SpecificScale[],
 
