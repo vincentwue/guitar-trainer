@@ -12,7 +12,8 @@ import { UseStore } from 'zustand';
 export type SimpleStateType = {
     useState: UseStore<State>,
     create(usestore: UseStore<State>): void,
-    delete(usestore: UseStore<State>): void
+    delete(usestore: UseStore<State>): void,
+    n:number,
 }
 
 export default function SimpleState(props: SimpleStateType) {
@@ -119,6 +120,7 @@ export default function SimpleState(props: SimpleStateType) {
         secondHidden={state.secondHidden}
         first={state.renderables[state.index1]}
         second={state.renderables[state.index2]}
+        n={props.n}
     /*       firstIntervals={state.firstIntervals}
           secondIntervals={state.secondIntervals} */
     />
@@ -141,6 +143,11 @@ export default function SimpleState(props: SimpleStateType) {
         </label> */}
 
             {/* <div className={classes.label}>first layer:</div> */}
+            <div >
+            
+            {props.n}
+            
+            </div>
 
             <select onChange={e => state.setIndex1(parseFloat(e.target.value))} value={state.index1}>
 

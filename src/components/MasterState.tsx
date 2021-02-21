@@ -54,8 +54,8 @@ export default function MasterState() {
 
         </div>
 
-        {masterStore.states.map(state => {
-            return <SimpleState useState={state} create={masterStore.create} delete={masterStore.delete}></SimpleState>
+        {masterStore.states.map((state, i) => {
+            return <SimpleState useState={state} create={masterStore.create} delete={masterStore.delete} n={i}></SimpleState>
         })}
 
         <div className={classes.white}>

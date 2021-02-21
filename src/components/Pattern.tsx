@@ -12,6 +12,7 @@ type PatternProps = {
   first: RenderablePattern,
   second: RenderablePattern,
   secondHidden: boolean,
+  n:number,
   /*   firstIntervals: boolean,
     secondIntervals: boolean, */
 }
@@ -87,7 +88,7 @@ export default function Pattern(props: PatternProps) {
     <div >
       <div className={classNames(classes.heading, !masterState.hideLegends ? classes.hidden : "")}>
 
-        {props.first.id + " - " + props.second.id}
+        {props.n + " - " + props.first.id + " - " + props.second.id}
 
       </div>
       <div className={classes.grid} style={{
