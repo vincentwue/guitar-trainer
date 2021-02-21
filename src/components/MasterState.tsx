@@ -18,9 +18,9 @@ export default function MasterState() {
 
         masterStore.loadStates()
 
-    }, [masterStore])
+    })
 
-    if (masterStore.states.length === 0) return <div>no state found</div>
+    if (masterStore.states.length === 0) return <div>loading states...</div>
 
 
     return <div className={classes.master}>

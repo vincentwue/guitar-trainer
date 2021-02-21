@@ -50,9 +50,20 @@ export const createUseSimpleStore = () => create<State>((set, get) => ({
 
     secondHidden: true,
 
-    setIndex1: (index1) => set(state => ({ index1 })),
-    setIndex2: (index2) => set(state => ({ index2 })),
-    toggleSecondHidden: () => set(state => ({ secondHidden: !state.secondHidden })),
+    setIndex1: (index1) => {
+        set(state => ({ index1 }))
+        useMasterStore.getState().saveStates()
+    },
+    setIndex2: (index2) => {
+        set(state => ({ index2 }))
+        useMasterStore.getState().saveStates()
+
+    },
+    toggleSecondHidden: () => {
+        set(state => ({ secondHidden: !state.secondHidden }))
+        useMasterStore.getState().saveStates()
+
+    },
     /* toggleFirstIntervals: () => set(state => ({ firstIntervals:!state.firstIntervals })),
     toggleSecondIntervals: () => set(state => ({ secondIntervals:!state.secondIntervals })),
  */
@@ -159,9 +170,17 @@ export const useMasterStore = create<MasterStore>((set, get) => ({
             secondHidden:paramState.getState().secondHidden,
         })
 
-        set({states:get().states.concat([store])})
+        const oldIndex = get().states.indexOf(paramState)
+
+        const left = get().states.slice(0, oldIndex)
+        const right = get().states.slice(oldIndex)
+
+        const newStates = [...left, store, ...right]
+
+        set({states:newStates})
 
         get().saveStates()
+
         
     },
 
