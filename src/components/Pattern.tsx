@@ -1,3 +1,4 @@
+import classes from './Patterns.module.css';
 import React from 'react';
 import { RenderablePattern } from '../definitions/renderables';
 // import { RenderableArray, RenderableState } from '../definitions/renderables';
@@ -59,31 +60,29 @@ export default function Pattern(props: PatternProps) {
   })
 
   const mappedFretNumbers = props.first.fretsArray.map((n, i) => {
-    return <div key={i} style={{
+    return <div key={i} className={classes.preFretNumbers} style={{
       gridColumnStart: i + 1,
       gridColumnEnd: i + 2,
       gridRowStart: props.first.strings.length + 2,
       gridRowEnd: props.first.strings.length + 3,
-      textAlign:"center",
+      // textAlign:"center",
       // minWidth:40,
     }}>{n ? n : ""}</div>
   })
   const mappedFretNumbers2 = props.first.fretsArray.map((n, i) => {
-    return <div key={i} style={{
+    return <div key={i} className={classes.postFretNumbers} style={{
       gridColumnStart: i + 1,
       gridColumnEnd: i + 2,
       gridRowStart: 0,
       gridRowEnd: 1,
-      textAlign:"center",
+      // textAlign:"center",
       // minWidth:40,
     }}>{n ? n : ""}</div>
   })
 
   return (
     <div >
-      <div  style={{
-        margin: 10,
-        fontSize: 40,
+      <div className={classes.grid} style={{
         display: "grid",
         gridTemplateColumns: "repeat(" + props.first.fretsArray.length + ", 1fr)",
         gridTemplateRows: "repeat(" + props.first.strings.length + ", 1fr)",

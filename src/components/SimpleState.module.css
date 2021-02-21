@@ -1,0 +1,68 @@
+.settings {
+
+    display: flex;
+    align-items: center;
+
+}
+
+.settings>* {
+    margin: 5px;
+}
+
+.settings select {
+    max-width: 120px;
+}
+
+.legend {
+    display: flex;
+}
+
+.allContainingChords {
+    display: flex;
+    flex-direction: column;
+    max-height: 400px;
+    overflow: auto;
+    background-color: linen;
+}
+
+.allContainingChords button {
+    margin: 5px;
+    display: flex;
+
+}
+
+.presentInScales {
+    background-color: linen;
+
+    box-sizing: border-box;
+    max-width: 550px;
+    max-height: 400px;
+    overflow: auto;
+}
+
+.presentInScalesRow {
+    display: flex;
+    align-items: center;
+    margin: 5px;
+}
+
+.presentInScalesButton {
+    width: 200px;
+}
+
+.presentInChords {
+    display: flex;
+    flex-direction: column;
+    background-color: linen;
+
+    box-sizing: border-box;
+    max-width: 420px;
+    max-height: 400px;
+    overflow: auto;
+}
+
+.presentInChords button {
+    display: flex;
+    width: 400px;
+    margin: 5px;
+}

@@ -26,7 +26,12 @@ export default function MasterState() {
     return <div className={classes.master}>
 
         <div className={classes.heading}>
+            <div className={classes.headText}>
+            
+            
+            
             Guitar scale/chord visualizer
+            </div>
             <div className={classes.headingLink}>
 
                 <a href="https://github.com/vincentwue/guitar-trainer" target="_blank">more information on github</a>
