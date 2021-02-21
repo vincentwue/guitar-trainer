@@ -12,13 +12,13 @@ type PatternProps = {
   first: RenderablePattern,
   second: RenderablePattern,
   secondHidden: boolean,
-/*   firstIntervals: boolean,
-  secondIntervals: boolean, */
+  /*   firstIntervals: boolean,
+    secondIntervals: boolean, */
 }
 
 export default function Pattern(props: PatternProps) {
 
-  // console.log(props)
+  console.log(props)
 
   const reversedSecondStrings = props.second.strings
   const masterState = useMasterStore()
@@ -30,18 +30,18 @@ export default function Pattern(props: PatternProps) {
     const mappedString = string.map((renderableNote, fretIndex) => {
       // const color = hexToRgb(renderableNote.interval.standardColor)
 
-/*       let borderRight = "4px solid grey";
-      let borderLeft = "4px solid grey";
-      if (fretIndex === 0) borderRight = "5px solid black"
-      if (fretIndex === 11) borderRight = "5px solid black"
-      if (fretIndex === 12) borderRight = "5px solid black"
-      if (fretIndex === 23) borderRight = "5px solid black"
-      if (fretIndex === 1) borderLeft = "5px solid black"
-      if (fretIndex === 13) borderLeft = "5px solid black"
-      if (fretIndex === 12) borderLeft = "5px solid black"
-      if (fretIndex === 24) borderLeft = "5px solid black" */
-      
-      return <div  key={fretIndex} className={classNames(classes["fret"+fretIndex], classes.fret)}  style={{
+      /*       let borderRight = "4px solid grey";
+            let borderLeft = "4px solid grey";
+            if (fretIndex === 0) borderRight = "5px solid black"
+            if (fretIndex === 11) borderRight = "5px solid black"
+            if (fretIndex === 12) borderRight = "5px solid black"
+            if (fretIndex === 23) borderRight = "5px solid black"
+            if (fretIndex === 1) borderLeft = "5px solid black"
+            if (fretIndex === 13) borderLeft = "5px solid black"
+            if (fretIndex === 12) borderLeft = "5px solid black"
+            if (fretIndex === 24) borderLeft = "5px solid black" */
+
+      return <div key={fretIndex} className={classNames(classes["fret" + fretIndex], classes.fret)} style={{
         gridColumnStart: fretIndex + 1,
         gridColumnEnd: fretIndex + 2,
         gridRowStart: props.first.strings.length - stringIndex,
@@ -85,6 +85,11 @@ export default function Pattern(props: PatternProps) {
 
   return (
     <div >
+      <div className={classNames(classes.heading, !masterState.hideLegends ? classes.hidden : "")}>
+
+        {props.first.id + " - " + props.second.id}
+
+      </div>
       <div className={classes.grid} style={{
         display: "grid",
         gridTemplateColumns: "repeat(" + props.first.fretsArray.length + ", 1fr)",

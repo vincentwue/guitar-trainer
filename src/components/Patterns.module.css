@@ -30,3 +30,15 @@
     border-left:2px solid red;
 }
 
+
+.heading {
+    font-size: small;
+    font-weight: bold;
+    margin-top:3px;
+    display: flex;
+    justify-content: center;
+}
+
+.hidden {
+    display:none;
+}
