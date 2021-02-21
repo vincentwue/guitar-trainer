@@ -61,7 +61,7 @@ export default function Pattern(props: CellProps) {
                     style={{ backgroundColor: colorFirst }}
                     className={classNames(
                         classes.first,
-                        (second.renderableNote.hidden || props.secondHidden) && classes.hidden
+                        first.renderableNote.hidden && classes.hidden
                     )}>
 
                     {props.first.renderableNote.note.id}
@@ -70,7 +70,7 @@ export default function Pattern(props: CellProps) {
 
                 <div className={classnames(
                     classes.second,
-                    second.renderableNote.hidden || props.secondHidden && classes.hidden,
+                    (second.renderableNote.hidden || props.secondHidden) && classes.hidden,
                     second.renderableNote.interval === intervals.PerfectUnison && classes.isUnison
                 )} ></div>
 
