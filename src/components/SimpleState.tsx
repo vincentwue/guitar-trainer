@@ -59,22 +59,23 @@ export default function SimpleState(props: SimpleStateType) {
 
         const specificScale = state.renderables[state.index1].source as SpecificScale
 
+        // console.log("hi", specificScale)
         if (specificScale.autoChords) {
 
             containingChords = specificScale.autoChords.map((chord, i) => {
 
                 // const specificChord  = chord as SpecificChord
-
-                console.log("hi", chord)
-
+                if (chord.id && chord.id.includes("-del")) return null
+                
                 return <button /* style={{ fontSize: 20, padding: 10, margin: 20 }} */ className={classes.specificChordButton} key={i} onClick={e => {
                     const renderable = renderables.find(r => r.id === chord.id)
                     if (renderable) {
-
+                        
                         const index = renderables.indexOf(renderable)
                         state.setIndex2(index)
                     }
                 }}>{(i + 1)}
+                    {/* {chord.id} */}
                     {chord.id && chord.id.padEnd(10, "_").padStart(15, "_")}
                     {specificScale.scale.rawScale.modes[i]}
                 </button>
@@ -97,6 +98,9 @@ export default function SimpleState(props: SimpleStateType) {
 
                 // const specificChord  = chord as SpecificChord
 
+                if (chord.id && chord.id.includes("-del")) return null
+
+
                 // console.log(chord)
 
                 return <button /* style={{ fontSize: 20, padding: 10, margin: 20 }} */ className={classes.specificChordButton} key={i} onClick={e => {
@@ -108,7 +112,7 @@ export default function SimpleState(props: SimpleStateType) {
                     }
                 }}>{(i + 1)}
                     {chord.id && chord.id.padEnd(10, "_").padStart(15, "_")}
-                    {/* {specificScale.scale.rawScale.modes[i]} */}
+                    {specificScale.scale.rawScale.modes[i]}
                 </button>
             })
         }
