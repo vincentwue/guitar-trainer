@@ -65,7 +65,7 @@ export default function SimpleState(props: SimpleStateType) {
 
                 // const specificChord  = chord as SpecificChord
 
-                // console.log(chord)
+                console.log("hi", chord)
 
                 return <button /* style={{ fontSize: 20, padding: 10, margin: 20 }} */ className={classes.specificChordButton} key={i} onClick={e => {
                     const renderable = renderables.find(r => r.id === chord.id)
@@ -75,7 +75,7 @@ export default function SimpleState(props: SimpleStateType) {
                         state.setIndex2(index)
                     }
                 }}>{(i + 1)}
-                    {chord.id.padEnd(10, "_").padStart(15, "_")}
+                    {chord.id && chord.id.padEnd(10, "_").padStart(15, "_")}
                     {specificScale.scale.rawScale.modes[i]}
                 </button>
             })
@@ -107,7 +107,7 @@ export default function SimpleState(props: SimpleStateType) {
                         state.setIndex2(index)
                     }
                 }}>{(i + 1)}
-                    {chord.id.padEnd(10, "_").padStart(15, "_")}
+                    {chord.id && chord.id.padEnd(10, "_").padStart(15, "_")}
                     {/* {specificScale.scale.rawScale.modes[i]} */}
                 </button>
             })
