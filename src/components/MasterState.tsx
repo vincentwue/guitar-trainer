@@ -48,6 +48,11 @@ export default function MasterState() {
             return <SimpleState useState={state} create={masterStore.create} delete={masterStore.delete}></SimpleState>
         })}
 
+        <div className={classes.white}>
+        
+        </div>
+
+
     </div>
 
 }

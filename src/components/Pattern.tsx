@@ -5,6 +5,8 @@ import { RenderablePattern } from '../definitions/renderables';
 import { hexToRgb } from '../utils/utils';
 // import classes from "./Pattern.module.css"
 import Cell, { DisplayType } from "./Cell"
+import classNames from 'classnames';
+import { useMasterStore } from '../utils/store';
 
 type PatternProps = {
   first: RenderablePattern,
@@ -19,31 +21,30 @@ export default function Pattern(props: PatternProps) {
   console.log(props)
 
   const reversedSecondStrings = props.second.strings
+  const masterState = useMasterStore()
 
   const mappedNotes = props.first.strings.map((string, stringIndex) => {
 
     const mappedString = string.map((renderableNote, fretIndex) => {
       // const color = hexToRgb(renderableNote.interval.standardColor)
 
-      let borderRight = "4px solid grey";
+/*       let borderRight = "4px solid grey";
       let borderLeft = "4px solid grey";
       if (fretIndex === 0) borderRight = "5px solid black"
       if (fretIndex === 11) borderRight = "5px solid black"
       if (fretIndex === 12) borderRight = "5px solid black"
+      if (fretIndex === 23) borderRight = "5px solid black"
       if (fretIndex === 1) borderLeft = "5px solid black"
       if (fretIndex === 13) borderLeft = "5px solid black"
       if (fretIndex === 12) borderLeft = "5px solid black"
-      if (fretIndex === 23) borderRight = "5px solid black"
-      if (fretIndex === 24) borderLeft = "5px solid black"
+      if (fretIndex === 24) borderLeft = "5px solid black" */
       
-      return <div  key={fretIndex}  style={{
+      return <div  key={fretIndex} className={classNames(classes["fret"+fretIndex], classes.fret)}  style={{
         gridColumnStart: fretIndex + 1,
         gridColumnEnd: fretIndex + 2,
         gridRowStart: props.first.strings.length - stringIndex,
         gridRowEnd: props.first.strings.length - stringIndex,
         // backgroundColor: color,
-        borderRight,
-        borderLeft,
         // minWidth:40,
         // }}>{note.hidden ? "" : props.firstIntervals ? note.interval.standardSymbol : note.note.id}</div>
       }}><Cell
@@ -89,7 +90,7 @@ export default function Pattern(props: PatternProps) {
       }}>
         {mappedNotes}
         {mappedFretNumbers2}
-        {mappedFretNumbers}
+        {!masterState.hideLegends && mappedFretNumbers}
       </div>
     </div>
   );

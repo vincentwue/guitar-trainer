@@ -1,0 +1,71 @@
+
+
+.cell {
+    background-color: lightyellow;
+    display: flex;
+    height: 100%;
+    width: 100%;
+}
+
+.stringTemplate {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    position: relative;
+    align-items: center;
+    justify-content:center;
+}
+
+
+.stringTemplate1 {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top:50%;
+    height: 1px;
+    width: 100%;
+    padding:0px -2px;
+    background-color: lightsteelblue;
+    justify-content: center;
+}
+
+.stringTemplate2 {
+    display: flex;
+    height: 20px;
+    width: 20px;
+}
+
+.wrapper {
+    display: flex;
+    position: relative;
+    height: 100%;
+    width: 100%;
+    padding:2px;
+    box-sizing: border-box;
+}
+
+.first {
+    border-radius: 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    font-size: 0.7em;
+    font-weight: bold;
+}
+
+.second {
+    position: absolute;
+    border: 1px solid black;
+    top:1px;
+    bottom:1px;
+    right:1px;
+    left:1px;
+    border-radius: 4px;
+}
+
+.hidden {
+    display: none;
+    background-color: lime;
+}

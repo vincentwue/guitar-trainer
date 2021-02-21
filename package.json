@@ -44,6 +44,7 @@
   "devDependencies": {
     "@babel/core": "^7.12.10",
     "@babel/preset-env": "^7.12.11",
+    "@types/classnames": "^2.2.11",
     "@types/expect": "^24.3.0",
     "@types/jest": "^26.0.20",
     "@types/mocha": "^8.2.0",

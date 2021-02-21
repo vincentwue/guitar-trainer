@@ -48,7 +48,7 @@ export const createUseSimpleStore = () => create<State>((set, get) => ({
     /*     firstIntervals:false,
         secondIntervals:false, */
 
-    secondHidden: true,
+    secondHidden: false,
 
     setIndex1: (index1) => {
         set(state => ({ index1 }))

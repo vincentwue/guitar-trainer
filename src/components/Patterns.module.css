@@ -1,0 +1,32 @@
+.fret {
+    border-right:1px solid grey;
+    border-left:1px solid grey;
+}
+
+.fret0 {
+    border-right:2px solid red;
+}
+.fret11 {
+    border-right:2px solid red;
+}
+
+.fret12 {
+    border-right:2px solid red;
+}
+.fret23 {
+    border-right:2px solid red;
+}
+
+.fret1 {
+    border-left:2px solid red;
+}
+.fret13 {
+    border-left:2px solid red;
+}
+.fret12 {
+    border-left:2px solid red;
+}
+.fret24 {
+    border-left:2px solid red;
+}
+
