@@ -1,5 +1,5 @@
 import classes from './Patterns.module.css';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { RenderablePattern } from '../definitions/renderables';
 // import { RenderableArray, RenderableState } from '../definitions/renderables';
 import { hexToRgb } from '../utils/utils';
@@ -18,10 +18,12 @@ type PatternProps = {
 
 export default function Pattern(props: PatternProps) {
 
-  console.log(props)
+  // console.log(props)
 
   const reversedSecondStrings = props.second.strings
   const masterState = useMasterStore()
+
+
 
   const mappedNotes = props.first.strings.map((string, stringIndex) => {
 

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useMasterStore } from '../utils/store';
 // import { RenderableArray, RenderableState } from '../definitions/renderables';
 import Pattern from "./Pattern"
@@ -8,20 +8,30 @@ import { SpecificScale, specificScales } from '../definitions/scales';
 import SimpleState from './SimpleState';
 import classes from "./MasterState.module.css"
 
+//create your forceUpdate hook
+function useForceUpdate(){
+    
+    const [value, setValue] = useState(0); // integer state
+    return () => setValue(value => value + 1); // update the state to force render
+}
+
 export default function MasterState() {
 
     const masterStore = useMasterStore()
 
     console.log("masterStore", masterStore)
+    const forceUpdate = useForceUpdate()
+    
+    
+    useEffect(()=>{
+        
+        console.log("state in Pattern", masterStore.states)
+        forceUpdate()
+    }, [masterStore.states])
 
-    useEffect(() => {
 
-        masterStore.loadStates()
-
-    })
 
     if (masterStore.states.length === 0) return <div>loading states...</div>
-
 
     return <div className={classes.master}>
 

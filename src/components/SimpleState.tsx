@@ -1,5 +1,5 @@
 import React from 'react';
-import { State, useMasterStore } from '../utils/store';
+import { createUseSimpleStore, State, useMasterStore } from '../utils/store';
 // import { RenderableArray, RenderableState } from '../definitions/renderables';
 import classes from "./SimpleState.module.css"
 import Pattern from "./Pattern"
@@ -19,8 +19,8 @@ export default function SimpleState(props: SimpleStateType) {
 
     const state = props.useState()
 
-    console.log("SimpleState props", state)
-    console.log(state.serialize())
+    // console.log("SimpleState props", state)
+    // console.log(state.serialize())
     const masterState = useMasterStore()
 
     const options = state.renderables.map((renderable, i) => {
@@ -64,7 +64,7 @@ export default function SimpleState(props: SimpleStateType) {
 
                 // const specificChord  = chord as SpecificChord
 
-                console.log(chord)
+                // console.log(chord)
 
                 return <button /* style={{ fontSize: 20, padding: 10, margin: 20 }} */ className={classes.specificChordButton} key={i} onClick={e => {
                     const renderable = renderables.find(r => r.id === chord.id)
@@ -88,7 +88,7 @@ export default function SimpleState(props: SimpleStateType) {
 
         const specificScale = state.renderables[state.index1].source as SpecificScale
 
-        console.log("specificScale", specificScale)
+        // console.log("specificScale", specificScale)
 
         if (specificScale.chords) {
 
@@ -96,7 +96,7 @@ export default function SimpleState(props: SimpleStateType) {
 
                 // const specificChord  = chord as SpecificChord
 
-                console.log(chord)
+                // console.log(chord)
 
                 return <button /* style={{ fontSize: 20, padding: 10, margin: 20 }} */ className={classes.specificChordButton} key={i} onClick={e => {
                     const renderable = renderables.find(r => r.id === chord.id)
@@ -162,7 +162,7 @@ export default function SimpleState(props: SimpleStateType) {
             hide second layer
         </label>
             </div>
-            <button onClick={e => props.create(props.useState)}>copy</button>
+            <button onClick={e => props.create(createUseSimpleStore(state.index1, state.index2))}>copy</button>
             <button onClick={e => props.delete(props.useState)}>delete</button>
         </div>
 

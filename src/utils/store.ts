@@ -39,11 +39,11 @@ export interface SerializedState {
 
 declare const window: any;
 
-export const createUseSimpleStore = () => create<State>((set, get) => ({
+export const createUseSimpleStore = (a: number = 0, b: number = 0) => create<State>((set, get) => ({
     renderables,
 
-    index1: 0,
-    index2: 0,
+    index1: a,
+    index2: b,
 
     /*     firstIntervals:false,
         secondIntervals:false, */
@@ -51,17 +51,19 @@ export const createUseSimpleStore = () => create<State>((set, get) => ({
     secondHidden: false,
 
     setIndex1: (index1) => {
+        // console.log(index1, get())
         set(state => ({ index1 }))
-        useMasterStore.getState().saveStates()
+        // useMasterStore.getState().saveStates()
     },
     setIndex2: (index2) => {
+        // console.log(index2, get())
         set(state => ({ index2 }))
-        useMasterStore.getState().saveStates()
+        // useMasterStore.getState().saveStates()
 
     },
     toggleSecondHidden: () => {
         set(state => ({ secondHidden: !state.secondHidden }))
-        useMasterStore.getState().saveStates()
+        // useMasterStore.getState().saveStates()
 
     },
     /* toggleFirstIntervals: () => set(state => ({ firstIntervals:!state.firstIntervals })),
@@ -95,15 +97,15 @@ export const createUseSimpleStore = () => create<State>((set, get) => ({
 export type MasterStore = {
     states: UseStore<State>[],
 
-    hideLegends:boolean,
+    hideLegends: boolean,
 
-    toggleHideLegends():void,
+    toggleHideLegends(): void,
 
     loadStates(): void,
     saveStates(): void,
 
-    create(paramState : UseStore<State>): void,
-    delete(paramState : UseStore<State>): void,
+    create(paramState: UseStore<State>): void,
+    delete(paramState: UseStore<State>): void,
 
 }
 
@@ -111,8 +113,8 @@ export const useMasterStore = create<MasterStore>((set, get) => ({
 
     states: [],
 
-    hideLegends:false,
-    toggleHideLegends: () => set({hideLegends:!get().hideLegends}),
+    hideLegends: false,
+    toggleHideLegends: () => set({ hideLegends: !get().hideLegends }),
 
     loadStates: () => {
 
@@ -156,40 +158,48 @@ export const useMasterStore = create<MasterStore>((set, get) => ({
         const serialized = get().states.map(s => s.getState().serialize())
         console.log(serialized)
         localStorage.setItem("state", JSON.stringify(serialized))
-        window.location.reload()
+        // window.location.reload()
 
     },
 
-    create: paramState => {
+    create: newStore => {
+
+        // const store = createUseSimpleStore( )
+        set(() => ({ states: [newStore].concat(get().states) }))
+        return
         
+        // store.getState().setIndex1(paramState.getState().index1)
+        // store.getState().setIndex2(paramState.getState().index2)
         
-
-        const store = createUseSimpleStore()
-        store.getState().deserialize({
-            index1:paramState.getState().index1,
-            index2:paramState.getState().index2,
-            secondHidden:paramState.getState().secondHidden,
-        })
-
-        const oldIndex = get().states.indexOf(paramState)
-
+        // return
+        
+        /*        store.getState().deserialize({
+            index1: paramState.getState().index1,
+            index2: paramState.getState().index2,
+            secondHidden: paramState.getState().secondHidden,
+        }) */
+        
+/*         const oldIndex = get().states.indexOf(paramState)
+        
         const left = get().states.slice(0, oldIndex)
         const right = get().states.slice(oldIndex)
-
-        const newStates = [...left, store, ...right]
-
-        set({states:newStates})
-
-        get().saveStates()
-
         
+        const newStates = [...left, store, ...right]
+        
+        set({ states: newStates }) */
+
+        // get().saveStates()
+
+
     },
 
     delete: paramState => {
         if (get().states.length === 1) return
-        set({states:get().states.filter(s => s !== paramState)})
+        set({ states: get().states.filter(s => s !== paramState) })
         get().saveStates()
     }
 
 
 }))
+
+useMasterStore.getState().loadStates()
