@@ -99,6 +99,7 @@ export default function Pattern(props: PatternProps) {
         {mappedFretNumbers2}
         {!masterState.hideLegends && mappedFretNumbers}
       </div>
+
     </div>
   );
 }

@@ -20,7 +20,7 @@
 .allContainingChords {
     display: flex;
     flex-direction: column;
-    max-height: 400px;
+    max-height: 200px;
     overflow: auto;
     background-color: linen;
 }
@@ -36,7 +36,7 @@
 
     box-sizing: border-box;
     max-width: 550px;
-    max-height: 400px;
+    max-height: 200px;
     overflow: auto;
 }
 
@@ -57,7 +57,7 @@
 
     box-sizing: border-box;
     max-width: 420px;
-    max-height: 400px;
+    max-height: 200px;
     overflow: auto;
 }
 
@@ -65,4 +65,10 @@
     display: flex;
     width: 400px;
     margin: 5px;
+}
+
+.bottomBorder {
+    margin: 10px 0px;
+    height: 2px;
+    background-color: black;
 }

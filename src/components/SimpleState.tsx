@@ -190,6 +190,11 @@ export default function SimpleState(props: SimpleStateType) {
             </div>
 
         </div>
+        <div className={classes.bottomBorder}>
+      
+      
+      
+      </div>
     </div>
 
 }
