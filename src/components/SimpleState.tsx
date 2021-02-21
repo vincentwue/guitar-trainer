@@ -11,6 +11,7 @@ export default function SimpleState() {
 
     const state = useSimpleStore()
     console.log(state)
+    console.log(state.serialize())
 
     const options = state.renderables.map((renderable, i) => {
         return <option key={i} value={i}>{renderable.id}</option>
@@ -140,8 +141,8 @@ export default function SimpleState() {
             secondHidden={state.secondHidden}
             first={state.renderables[state.index1]}
             second={state.renderables[state.index2]}
-            firstIntervals={state.firstIntervals}
-            secondIntervals={state.secondIntervals}
+      /*       firstIntervals={state.firstIntervals}
+            secondIntervals={state.secondIntervals} */
         />
 
         <div style={{ display: presentInScales ? "flex" : "none", flexDirection: "column", alignItems: "flex-start", height: 1, flexGrow: 1, overflow: "auto" }}>

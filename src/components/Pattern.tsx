@@ -9,8 +9,8 @@ type PatternProps = {
   first: RenderablePattern,
   second: RenderablePattern,
   secondHidden: boolean,
-  firstIntervals: boolean,
-  secondIntervals: boolean,
+/*   firstIntervals: boolean,
+  secondIntervals: boolean, */
 }
 
 export default function Pattern(props: PatternProps) {
