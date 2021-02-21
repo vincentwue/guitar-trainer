@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import SimpleState from "./components/SimpleState"
+import MasterState from "./components/MasterState"
 
 function App() {
   
@@ -9,7 +9,7 @@ function App() {
 
   return (
     <div className="App">
-     <SimpleState/>
+     <MasterState/>
    </div>
   );
 }

@@ -1,31 +1,31 @@
-import create from "zustand"
+import create, { UseStore } from "zustand"
 import { Note, notesArray } from "../definitions/notes"
 import { StringInstrument } from "../definitions/instruments"
 import { RenderablePattern, renderables } from "../definitions/renderables"
 
 
 
-type State = {
+export type State = {
     renderables: RenderablePattern[],
 
     index1: number,
     index2: number,
 
-/*     firstIntervals:boolean,
-    secondIntervals:boolean,
- */
-    secondHidden:boolean,
+    /*     firstIntervals:boolean,
+        secondIntervals:boolean,
+     */
+    secondHidden: boolean,
 
-/*     toggleFirstIntervals:() => void,
-    toggleSecondIntervals:() => void, */
+    /*     toggleFirstIntervals:() => void,
+        toggleSecondIntervals:() => void, */
 
     setIndex1: (index: number) => void
     setIndex2: (index: number) => void
-    toggleSecondHidden:() => void,
-    
-    
-    serialize:() => SerializedState,
-    deserialize: (serializedState : SerializedState) => void,
+    toggleSecondHidden: () => void,
+
+
+    serialize: () => SerializedState,
+    deserialize: (serializedState: SerializedState) => void,
 
 
 }
@@ -34,36 +34,36 @@ export interface SerializedState {
     index1: number,
     index2: number,
 
-    secondHidden:boolean,
+    secondHidden: boolean,
 }
 
-declare const window : any;
+declare const window: any;
 
-export const useSimpleStore = window.store = create<State>((set, get) => ({
+export const createUseSimpleStore = () => create<State>((set, get) => ({
     renderables,
 
-    index1:0,
-    index2:0,
+    index1: 0,
+    index2: 0,
 
-/*     firstIntervals:false,
-    secondIntervals:false, */
+    /*     firstIntervals:false,
+        secondIntervals:false, */
 
-    secondHidden:true,
-    
+    secondHidden: true,
+
     setIndex1: (index1) => set(state => ({ index1 })),
     setIndex2: (index2) => set(state => ({ index2 })),
-    toggleSecondHidden: () => set(state => ({ secondHidden:!state.secondHidden })),
+    toggleSecondHidden: () => set(state => ({ secondHidden: !state.secondHidden })),
     /* toggleFirstIntervals: () => set(state => ({ firstIntervals:!state.firstIntervals })),
     toggleSecondIntervals: () => set(state => ({ secondIntervals:!state.secondIntervals })),
  */
 
     serialize: () => {
         const state = get()
-        
+
         return {
-            index1:state.index1,
-            index2:state.index2,
-            secondHidden:state.secondHidden,
+            index1: state.index1,
+            index2: state.index2,
+            secondHidden: state.secondHidden,
         }
     },
 
@@ -71,48 +71,104 @@ export const useSimpleStore = window.store = create<State>((set, get) => ({
 
         set(state => {
             return {
-                index1:serializedState.index1,
-                index2:serializedState.index2,
-                secondHidden:serializedState.secondHidden,
+                index1: serializedState.index1,
+                index2: serializedState.index2,
+                secondHidden: serializedState.secondHidden,
             }
         })
-        
+
     },
 
 }))
 
 export type MasterStore = {
-    states : State[],
+    states: UseStore<State>[],
 
-    loadStates():void,
-    saveStates():void,
-    
+    hideLegends:boolean,
+
+    toggleHideLegends():void,
+
+    loadStates(): void,
+    saveStates(): void,
+
+    create(paramState : UseStore<State>): void,
+    delete(paramState : UseStore<State>): void,
+
 }
 
-export const masterStore = create<MasterStore>((set, get) => ({
+export const useMasterStore = create<MasterStore>((set, get) => ({
 
-    states:[],
-    
+    states: [],
+
+    hideLegends:false,
+    toggleHideLegends: () => set({hideLegends:!get().hideLegends}),
+
     loadStates: () => {
 
+        if (get().states.length > 0) {
+            console.error("already loaded state from localstorage")
+            return
+        }
+
         const state = localStorage.getItem("state")
-        if (!state) return;
+        if (!state) {
+
+            const simpleStore = createUseSimpleStore()
+            simpleStore.getState().setIndex1(0)
+            simpleStore.getState().setIndex2(1)
+            // simpleStore.getState().toggleSecondHidden()
+            set({ states: [simpleStore] })
+            get().saveStates()
+            return
+        };
+
         console.log("localStorage get", state)
         const parsed = JSON.parse(state)
         console.log("localStorage get parsed", parsed)
 
+        const mapped = parsed.map((item: SerializedState) => {
+            const store = createUseSimpleStore()
+            store.getState().deserialize(item)
+            return store
+        })
 
-        const states = []
+
+        const states = mapped
 
 
-        // set(state => ({  })
-        
+        set(state => ({ states }))
+
     },
 
     saveStates: () => {
 
-        set(state => ({  }))
+        const serialized = get().states.map(s => s.getState().serialize())
+        console.log(serialized)
+        localStorage.setItem("state", JSON.stringify(serialized))
 
+    },
+
+    create: paramState => {
+        
+        
+
+        const store = createUseSimpleStore()
+        store.getState().deserialize({
+            index1:paramState.getState().index1,
+            index2:paramState.getState().index2,
+            secondHidden:paramState.getState().secondHidden,
+        })
+
+        set({states:get().states.concat([store])})
+
+        get().saveStates()
+        
+    },
+
+    delete: paramState => {
+        if (get().states.length === 1) return
+        set({states:get().states.filter(s => s !== paramState)})
+        get().saveStates()
     }
 
 

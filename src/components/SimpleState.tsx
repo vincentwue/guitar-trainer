@@ -1,15 +1,24 @@
 import React from 'react';
-import { useSimpleStore } from '../utils/store';
+import { State } from '../utils/store';
 // import { RenderableArray, RenderableState } from '../definitions/renderables';
-import classes from "./Pattern.module.css"
+import classes from "./SimpleState.module.css"
 import Pattern from "./Pattern"
 import { SpecificChord } from '../definitions/chords';
 import { renderables } from '../definitions/renderables';
 import { SpecificScale, specificScales } from '../definitions/scales';
+import { UseStore } from 'zustand';
 
-export default function SimpleState() {
 
-    const state = useSimpleStore()
+export type SimpleStateType = {
+    useState: UseStore<State>,
+    create(usestore: UseStore<State>): void,
+    delete(usestore: UseStore<State>): void
+}
+
+export default function SimpleState(props: SimpleStateType) {
+
+    const state = props.useState()
+
     console.log(state)
     console.log(state.serialize())
 
@@ -75,15 +84,15 @@ export default function SimpleState() {
     }
 
 
-    return <div style={{ fontSize: 20, display: "flex", flexDirection: "column", height: "100%" }}>
+    return <div style={{ fontSize: 20, display: "flex", flexDirection: "column", height: "100%", minHeight:700 }}>
 
-        <div style={{ display: "flex", flexDirection: "row", alignItems: "center", fontWeight: 'bolder', fontSize: 25, padding: 10, borderBottom: "2px solid black", backgroundColor: "#ff8282" }}>
-            Guitar scale/chord visualizer
-            <div style={{ fontSize: 17, paddingLeft: 20, display: "flex", fontWeight: 'bolder', alignItems: "center", justifyContent: "center" }}>
 
-                <a href="https://github.com/vincentwue/guitar-trainer" target="_blank">more information on github</a>
-            </div>
+        <div style={{height:2, backgroundColor:"black", marginBottom:5}}>
+        
+        
+        
         </div>
+
         <div >
 
         </div>
@@ -122,12 +131,14 @@ export default function SimpleState() {
 
 
                 </select>
-                <div style={{ marginLeft:20 }}>
+                <div style={{ marginLeft: 20 }}>
                     <label>
                         <input type="checkbox" checked={state.secondHidden} onChange={e => state.toggleSecondHidden()}></input>
             hide second layer
         </label>
                 </div>
+                <button onClick={e => props.create(props.useState)}>copy</button>
+                <button onClick={e => props.delete(props.useState)}>delete</button>
             </div>
 
 
@@ -141,8 +152,8 @@ export default function SimpleState() {
             secondHidden={state.secondHidden}
             first={state.renderables[state.index1]}
             second={state.renderables[state.index2]}
-      /*       firstIntervals={state.firstIntervals}
-            secondIntervals={state.secondIntervals} */
+        /*       firstIntervals={state.firstIntervals}
+              secondIntervals={state.secondIntervals} */
         />
 
         <div style={{ display: presentInScales ? "flex" : "none", flexDirection: "column", alignItems: "flex-start", height: 1, flexGrow: 1, overflow: "auto" }}>

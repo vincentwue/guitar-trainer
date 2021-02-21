@@ -4,7 +4,7 @@ import { Note } from '../definitions/notes';
 import { RenderableNote, RenderablePattern } from '../definitions/renderables';
 // import { RenderableArray, RenderableState } from '../definitions/renderables';
 import { hexToRgb } from '../utils/utils';
-import classes from "./Pattern.module.css"
+import classes from "./Cell.module.css"
 
 export interface RenderableCell {
     renderableNote: RenderableNote,

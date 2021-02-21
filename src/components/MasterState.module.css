@@ -1,0 +1,34 @@
+
+.master {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: scroll;
+}
+
+.heading {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-weight:bolder;
+    padding:10px;
+    font-size: 25px;
+    border-bottom: 2px solid black;
+    background-color: #ff8282;
+}
+
+.headingLink {
+    font-size: 17px;
+    padding-left: 20px;
+    display: flex;
+    font-weight: bolder;
+    align-items:center;
+    justify-content: center;
+}
+
+.hideLegendLabel {
+    margin-left: auto;
+    font-size: 17px;
+
+}
