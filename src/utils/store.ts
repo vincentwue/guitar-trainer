@@ -198,6 +198,7 @@ export const useMasterStore = create<MasterStore>((set, get) => ({
         if (get().states.length === 1) return
         set({ states: get().states.filter(s => s !== paramState) })
         get().saveStates()
+        window.location.reload()
     }
 
 
