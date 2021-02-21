@@ -12,6 +12,8 @@ When a scale is selected, matching chords are selectable below (just try it).
 
 When a chord is selected, matching scales are selectable below.
 
+Don't miss the "hide legends" checkbox on the top right - perfect learning setup.
+
 Text me if you're interested in further features (vini96@web.de).
 
 
