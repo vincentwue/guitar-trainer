@@ -4,16 +4,16 @@
 
 ## History
 
-I wanted to use some TypeScript and create my own guitar learn app.
+You can visualize two patterns (scales/chords) in one view simultaneously.
 
-You can choose a chord in the first dropdown and the scales that contain this chord will show up as buttons below. Click them to set the second layer.
+You can invert them and copy a pattern two show two or more fretboards at the same time.
 
-You can enable "show second" to show the pattern choosed in the second dropdown as simple black dots (most useful for me at this point).
+When a scale is selected, matching chords are selectable below (just try it).
 
-I do not need more functionality currently,
-but you can see a lot of useful information in the console.
+When a chord is selected, matching scales are selectable below.
 
-Text me if you're interested in further features (vini96@web.de)
+Text me if you're interested in further features (vini96@web.de).
+
 
 ## Possible next steps (Postponed until I see use for it)
 
@@ -27,13 +27,13 @@ Redesign and create bigger UI concept.
 
 Implement left handed support.
 
-Allow multiple fretboards simultaneously.
+Allow multiple fretboards simultaneously. CHECK
 
 Turn colors on/off (and make legend -> interval or note colors?).
 
-Save UI state to localStorage.
+Save UI state to localStorage. CHECK
 
-Show triads and tetrads (and more) for scales.
+Show triads and tetrads (and more) for scales. CHECK
 
 Correct english/german naming.
 
