@@ -162,7 +162,7 @@ export default function SimpleState(props: SimpleStateType) {
             hide second layer
         </label>
             </div>
-            <button onClick={e => props.create(createUseSimpleStore(state.index1, state.index2))}>copy</button>
+            <button onClick={e => props.create(props.useState)}>copy</button>
             <button onClick={e => props.delete(props.useState)}>delete</button>
         </div>
 

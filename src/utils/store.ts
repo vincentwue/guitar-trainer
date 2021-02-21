@@ -53,17 +53,17 @@ export const createUseSimpleStore = (a: number = 0, b: number = 0) => create<Sta
     setIndex1: (index1) => {
         // console.log(index1, get())
         set(state => ({ index1 }))
-        // useMasterStore.getState().saveStates()
+        useMasterStore.getState().saveStates()
     },
     setIndex2: (index2) => {
         // console.log(index2, get())
         set(state => ({ index2 }))
-        // useMasterStore.getState().saveStates()
+        useMasterStore.getState().saveStates()
 
     },
     toggleSecondHidden: () => {
         set(state => ({ secondHidden: !state.secondHidden }))
-        // useMasterStore.getState().saveStates()
+        useMasterStore.getState().saveStates()
 
     },
     /* toggleFirstIntervals: () => set(state => ({ firstIntervals:!state.firstIntervals })),
@@ -162,34 +162,35 @@ export const useMasterStore = create<MasterStore>((set, get) => ({
 
     },
 
-    create: newStore => {
+    create: paramState => {
 
-        // const store = createUseSimpleStore( )
-        set(() => ({ states: [newStore].concat(get().states) }))
-        return
-        
+        const store = createUseSimpleStore()
+        // set(() => ({ states: [newStore].concat(get().states) }))
+
+
         // store.getState().setIndex1(paramState.getState().index1)
         // store.getState().setIndex2(paramState.getState().index2)
-        
+
         // return
-        
-        /*        store.getState().deserialize({
+
+        store.getState().deserialize({
             index1: paramState.getState().index1,
             index2: paramState.getState().index2,
             secondHidden: paramState.getState().secondHidden,
-        }) */
-        
-/*         const oldIndex = get().states.indexOf(paramState)
-        
+        })
+
+        const oldIndex = get().states.indexOf(paramState)
+
         const left = get().states.slice(0, oldIndex)
         const right = get().states.slice(oldIndex)
-        
+
         const newStates = [...left, store, ...right]
-        
-        set({ states: newStates }) */
 
-        // get().saveStates()
+        set({ states: newStates })
 
+        get().saveStates()
+        window.location.reload()
+        return
 
     },
 
