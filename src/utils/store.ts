@@ -156,6 +156,7 @@ export const useMasterStore = create<MasterStore>((set, get) => ({
         const serialized = get().states.map(s => s.getState().serialize())
         console.log(serialized)
         localStorage.setItem("state", JSON.stringify(serialized))
+        window.location.reload()
 
     },
 
