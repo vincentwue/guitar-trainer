@@ -27,6 +27,10 @@
     justify-content: center;
 }
 
+.checkboxes {
+    margin-left: auto;
+}
+
 .hideLegendLabel {
     margin-left: auto;
 

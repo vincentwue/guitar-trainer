@@ -98,6 +98,8 @@ export type MasterStore = {
     states: UseStore<State>[],
 
     hideLegends: boolean,
+    showPiano:boolean,
+    toggleShowPiano(): void,
 
     toggleHideLegends(): void,
 
@@ -115,6 +117,10 @@ export const useMasterStore = create<MasterStore>((set, get) => ({
 
     hideLegends: false,
     toggleHideLegends: () => set({ hideLegends: !get().hideLegends }),
+    
+    showPiano:false,
+    toggleShowPiano: () => set({ showPiano: !get().showPiano }),
+
 
     loadStates: () => {
 

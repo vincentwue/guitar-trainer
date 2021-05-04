@@ -1,25 +1,64 @@
-
 .wrapper {
     display: flex;
     margin: 10px;
 }
 
+.heading {
+    font-size: small;
+    font-weight: bold;
+    margin-top:3px;
+    display: flex;
+    justify-content: center;
+}
+
 .whiteKey {
     position: relative;
     height: 70px;
-    width:20px;
+    width: 20px;
     border: 1px solid black;
 }
 
 .whiteKeyNoteName {
     position: absolute;
     bottom: 0;
-    left:10;
+    left: 10;
 }
 
 .blackKey {
     height: 40px;
-    width:15px;
-    background:black;
+    width: 15px;
+    background: black;
     position: absolute;
+}
+
+.whiteKeyNoteName .inScale {
+    height: 8px;
+    width: 8px;
+    background: green;
+    position: absolute;
+    bottom: 0px;
+    left: 4px;
+    border-radius: 5px;
+
+}
+
+.whiteKeyNoteName .isRoot {
+    background: red;
+}
+
+
+.blackKey .inScale {
+    height: 5px;
+    width: 5px;
+    background: green;
+    position: absolute;
+    bottom: 0px;
+    left: 0.5px;
+    border-radius: 3px;
+
+}
+
+.blackKey .isRoot {
+    background: red;
+
 }

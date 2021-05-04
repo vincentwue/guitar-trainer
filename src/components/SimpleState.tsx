@@ -3,6 +3,7 @@ import { createUseSimpleStore, State, useMasterStore } from '../utils/store';
 // import { RenderableArray, RenderableState } from '../definitions/renderables';
 import classes from "./SimpleState.module.css"
 import Pattern from "./Pattern"
+import PianoPattern from "./PianoPattern"
 import { SpecificChord } from '../definitions/chords';
 import { renderables } from '../definitions/renderables';
 import { SpecificScale, specificScales } from '../definitions/scales';
@@ -13,7 +14,7 @@ export type SimpleStateType = {
     useState: UseStore<State>,
     create(usestore: UseStore<State>): void,
     delete(usestore: UseStore<State>): void,
-    n:number,
+    n: number,
 }
 
 export default function SimpleState(props: SimpleStateType) {
@@ -66,11 +67,11 @@ export default function SimpleState(props: SimpleStateType) {
 
                 // const specificChord  = chord as SpecificChord
                 if (chord.id && chord.id.includes("-del")) return null
-                
+
                 return <button /* style={{ fontSize: 20, padding: 10, margin: 20 }} */ className={classes.specificChordButton} key={i} onClick={e => {
                     const renderable = renderables.find(r => r.id === chord.id)
                     if (renderable) {
-                        
+
                         const index = renderables.indexOf(renderable)
                         state.setIndex2(index)
                     }
@@ -120,7 +121,7 @@ export default function SimpleState(props: SimpleStateType) {
 
     }
 
-    const pattern = <Pattern
+    let pattern = <Pattern
         secondHidden={state.secondHidden}
         first={state.renderables[state.index1]}
         second={state.renderables[state.index2]}
@@ -128,6 +129,15 @@ export default function SimpleState(props: SimpleStateType) {
     /*       firstIntervals={state.firstIntervals}
           secondIntervals={state.secondIntervals} */
     />
+
+    if (masterState.showPiano) {
+        pattern = <PianoPattern
+            secondHidden={state.secondHidden}
+            first={state.renderables[state.index1]}
+            second={state.renderables[state.index2]}
+            n={props.n}
+        ></PianoPattern>
+    }
 
     if (masterState.hideLegends) return pattern
 
@@ -148,9 +158,9 @@ export default function SimpleState(props: SimpleStateType) {
 
             {/* <div className={classes.label}>first layer:</div> */}
             <div >
-            
-            {props.n}
-            
+
+                {props.n}
+
             </div>
 
             <select onChange={e => state.setIndex1(parseFloat(e.target.value))} value={state.index1}>
@@ -170,8 +180,8 @@ export default function SimpleState(props: SimpleStateType) {
             <div >
                 <label>
                     <input type="checkbox" checked={state.secondHidden} onChange={e => state.toggleSecondHidden()}></input>
-            hide second layer
-        </label>
+                    hide second layer
+                </label>
             </div>
             <button onClick={e => props.create(props.useState)}>copy</button>
             <button onClick={e => props.delete(props.useState)}>delete</button>
@@ -202,10 +212,10 @@ export default function SimpleState(props: SimpleStateType) {
 
         </div>
         <div className={classes.bottomBorder}>
-      
-      
-      
-      </div>
+
+
+
+        </div>
     </div>
 
 }

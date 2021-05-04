@@ -9,8 +9,8 @@ import SimpleState from './SimpleState';
 import classes from "./MasterState.module.css"
 
 //create your forceUpdate hook
-function useForceUpdate(){
-    
+function useForceUpdate() {
+
     const [value, setValue] = useState(0); // integer state
     return () => setValue(value => value + 1); // update the state to force render
 }
@@ -21,10 +21,10 @@ export default function MasterState() {
 
     console.log("masterStore", masterStore)
     const forceUpdate = useForceUpdate()
-    
-    
-    useEffect(()=>{
-        
+
+
+    useEffect(() => {
+
         console.log("state in Pattern", masterStore.states)
         forceUpdate()
     }, [masterStore.states])
@@ -37,21 +37,29 @@ export default function MasterState() {
 
         <div className={classes.heading}>
             <div className={classes.headText}>
-            
-            
-            
-            Guitar scale/chord visualizer
+
+
+
+                Guitar scale/chord visualizer
             </div>
             <div className={classes.headingLink}>
 
                 <a href="https://github.com/vincentwue/guitar-trainer" target="_blank">more information on github</a>
             </div>
 
-        <label className={classes.hideLegendLabel}>
-             <input type="checkbox" checked={masterStore.hideLegends} readOnly onClick={e => masterStore.toggleHideLegends()}></input> 
-             hide legends
-        </label>
+            <div className={classes.checkboxes}>
 
+                <label className={classes.hideLegendLabel}>
+                    <input type="checkbox" checked={masterStore.hideLegends} readOnly onClick={e => masterStore.toggleHideLegends()}></input>
+                    hide legends
+                </label>
+
+                <label className={classes.hideLegendLabel}>
+                    <input type="checkbox" checked={masterStore.showPiano} readOnly onClick={e => masterStore.toggleShowPiano()}></input>
+                    show piano
+                </label>
+
+            </div>
         </div>
 
         {masterStore.states.map((state, i) => {
@@ -59,7 +67,7 @@ export default function MasterState() {
         })}
 
         <div className={classes.white}>
-        
+
         </div>
 
 
