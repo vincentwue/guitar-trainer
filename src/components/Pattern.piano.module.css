@@ -1,0 +1,19 @@
+
+.wrapper {
+    display: flex;
+    margin: 10px;
+}
+
+.whiteKey {
+    position: relative;
+    height: 70px;
+    width:20px;
+    border: 1px solid black;
+}
+
+.blackKey {
+    height: 40px;
+    width:15px;
+    background:black;
+    position: absolute;
+}
