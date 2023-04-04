@@ -1,4 +1,4 @@
-import { Note, notes, notesArray } from "./notes";
+import { Note, notes, notesArray } from "./Notes";
 
 
 export const RawStringInstruments: RawStringInstrumentsInterface = {

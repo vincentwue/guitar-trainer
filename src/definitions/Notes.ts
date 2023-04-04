@@ -1,5 +1,5 @@
 
-import { Interval, intervals } from "./intervals"
+import { Interval, intervals } from "./Intervals"
 
 
 export interface Notes {

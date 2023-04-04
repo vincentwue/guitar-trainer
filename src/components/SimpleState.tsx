@@ -4,10 +4,11 @@ import { createUseSimpleStore, State, useMasterStore } from '../utils/store';
 import classes from "./SimpleState.module.css"
 import Pattern from "./Pattern"
 import PianoPattern from "./PianoPattern"
-import { SpecificChord } from '../definitions/chords';
+import { SpecificChord } from '../definitions/Chords';
 import { renderables } from '../definitions/renderables';
-import { SpecificScale, specificScales } from '../definitions/scales';
+import { SpecificScale, specificScales } from '../definitions/Scales';
 import { UseStore } from 'zustand';
+import useLocalStorage from './useLocalStorage';
 
 
 export type SimpleStateType = {
@@ -24,6 +25,7 @@ export default function SimpleState(props: SimpleStateType) {
     // console.log("SimpleState props", state)
     // console.log(state.serialize())
     const masterState = useMasterStore()
+    const [doReMi, setDoReMi] = useLocalStorage("doremi", true)
 
     const options = state.renderables.map((renderable, i) => {
         return <option key={i} value={i}>{renderable.id}</option>
@@ -185,6 +187,12 @@ export default function SimpleState(props: SimpleStateType) {
             </div>
             <button onClick={e => props.create(props.useState)}>copy</button>
             <button onClick={e => props.delete(props.useState)}>delete</button>
+            <div >
+                <label>
+                    <input type="checkbox" checked={doReMi} onChange={e => setDoReMi(!doReMi)}></input>
+                    DoReMi (refresh req)
+                </label>
+            </div>
         </div>
 
 

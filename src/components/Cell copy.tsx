@@ -1,6 +1,6 @@
 import React from 'react';
-import { Interval, intervals } from '../definitions/intervals';
-import { Note } from '../definitions/notes';
+import { Interval, intervals } from '../definitions/Intervals';
+import { Note } from '../definitions/Notes';
 import { RenderableNote, RenderablePattern } from '../definitions/renderables';
 // import { RenderableArray, RenderableState } from '../definitions/renderables';
 import { hexToRgb } from '../utils/utils';

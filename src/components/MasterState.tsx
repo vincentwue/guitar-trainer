@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { useMasterStore } from '../utils/store';
 // import { RenderableArray, RenderableState } from '../definitions/renderables';
 import Pattern from "./Pattern"
-import { SpecificChord } from '../definitions/chords';
+import { SpecificChord } from '../definitions/Chords';
 import { renderables } from '../definitions/renderables';
-import { SpecificScale, specificScales } from '../definitions/scales';
+import { SpecificScale, specificScales } from '../definitions/Scales';
 import SimpleState from './SimpleState';
 import classes from "./MasterState.module.css"
 
@@ -62,7 +62,7 @@ export default function MasterState() {
             </div>
         </div>
 
-        {masterStore.states.map((state, i) => {
+        {masterStore.states.map((state:any, i:any) => {
             return <SimpleState useState={state} create={masterStore.create} delete={masterStore.delete} n={i}></SimpleState>
         })}
 

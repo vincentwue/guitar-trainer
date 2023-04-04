@@ -1,7 +1,7 @@
 
-import { Interval, intervals, intervalsArray } from "./intervals"
-import { Note, notes, notesArray } from "./notes"
-import { SpecificAutoChord, SpecificChord, specificChords } from "./chords"
+import { Interval, intervals, intervalsArray } from "./Intervals"
+import { Note, notes, notesArray } from "./Notes"
+import { SpecificAutoChord, SpecificChord, specificChords } from "./Chords"
 
 export const RawScales: RawScalesInterface = {
     Major: {

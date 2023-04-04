@@ -7,6 +7,11 @@
     width: 100%;
 }
 
+.doremi.cell {
+    /* background-color:lightsalmon */
+
+}
+
 .stringTemplate {
     display: flex;
     height: 100%;

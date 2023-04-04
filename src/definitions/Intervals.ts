@@ -23,6 +23,7 @@ export interface Interval {
     readonly standardSymbol: string,
     // readonly octaveSymbol: string,
     readonly standardColor: string,
+    doReMiColor?:string
 }
 
 // https://en.wikipedia.org/wiki/Interval_(music)#cite_ref-TritoneA4_6-0:~:text=below.-,Number%20of,Interval
@@ -112,5 +113,23 @@ export const intervals: Intervals = {
 
 }
 
-export const intervalsArray: Interval[] = Object.values(intervals)
+export const solmisationColors = [
+    "#138708",//"Do", grün ionisch
+    "",//"Ra",
+    "#3cd6d4",//"Re", türkis
+    "",//"Me",
+    "#b31212",//"Mi", phrygisch
+    "#ed7505",//"Fa", orange lydisch
+    "",//"Se",
+    "#ac1bfa",//"So", purple mixo
+    "",//"Le",
+    "#ffdb38",//"La", gelb moll
+    "",//"Li",
+    "#996100",//"Ti", braun lokrisch
+]
+
+export const intervalsArray: Interval[] = Object.values(intervals).map((interval, i) =>  {
+    interval.doReMiColor = solmisationColors[i]
+    return interval
+})
 

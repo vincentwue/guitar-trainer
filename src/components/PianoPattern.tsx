@@ -6,7 +6,7 @@ import { hexToRgb } from '../utils/utils';
 import Cell, { DisplayType } from "./Cell"
 import classNames from 'classnames';
 import { useMasterStore } from '../utils/store';
-import { notesArray } from '../definitions/notes';
+import { notesArray } from '../definitions/Notes';
 
 type PatternProps = {
   first: RenderablePattern,

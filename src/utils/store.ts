@@ -1,5 +1,5 @@
 import create, { UseStore } from "zustand"
-import { Note, notesArray } from "../definitions/notes"
+import { Note, notesArray } from "../definitions/Notes"
 import { StringInstrument } from "../definitions/instruments"
 import { RenderablePattern, renderables } from "../definitions/renderables"
 
@@ -27,6 +27,9 @@ export type State = {
     serialize: () => SerializedState,
     deserialize: (serializedState: SerializedState) => void,
 
+    doReMi:boolean,
+    toggleDoReMi: () => void,
+
 
 }
 
@@ -38,7 +41,7 @@ export interface SerializedState {
 }
 
 declare const window: any;
-
+// @ts-ignore
 export const createUseSimpleStore = (a: number = 0, b: number = 0) => create<State>((set, get) => ({
     renderables,
 
@@ -63,6 +66,11 @@ export const createUseSimpleStore = (a: number = 0, b: number = 0) => create<Sta
     },
     toggleSecondHidden: () => {
         set(state => ({ secondHidden: !state.secondHidden }))
+        useMasterStore.getState().saveStates()
+
+    },
+    toggleDoReMi: () => {
+        set(state => ({ doReMi: !state.doReMi }))
         useMasterStore.getState().saveStates()
 
     },

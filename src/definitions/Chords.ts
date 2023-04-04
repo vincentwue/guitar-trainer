@@ -1,6 +1,6 @@
-import { Interval, intervals } from "./intervals"
-import { Note, notesArray } from "./notes"
-import { Scale, SpecificScale } from "./scales"
+import { Interval, intervals } from "./Intervals"
+import { Note, notesArray } from "./Notes"
+import { Scale, SpecificScale } from "./Scales"
 
 export const chords: RawChords = {
     PerfectUnison: {

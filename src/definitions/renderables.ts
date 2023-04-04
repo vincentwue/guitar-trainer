@@ -1,8 +1,8 @@
-import { SpecificChord, specificChords } from "./chords"
-import { SpecificScale, specificScales } from "./scales"
+import { SpecificChord, specificChords } from "./Chords"
+import { SpecificScale, specificScales } from "./Scales"
 import { getStringInstrument, RawStringInstruments, StringInstrument } from "./instruments"
-import { Interval, intervals } from "./intervals"
-import { Note, notes } from "./notes"
+import { Interval, intervals } from "./Intervals"
+import { Note, notes } from "./Notes"
 import { getInterval } from "."
 
 
