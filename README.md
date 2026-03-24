@@ -1,53 +1,57 @@
-# Guitar scale/chord visualizer
+# Guitar Trainer
 
-[Visit guitar trainer (hostet on github pages)](https://vincentwue.github.io/guitar-trainer/)
+An interactive fretboard study tool for comparing guitar scales and chords, exploring related harmony, and reinforcing pattern recognition.
 
-## History
+[Live demo](https://vincentwue.github.io/guitar-trainer/)
 
-You can visualize two patterns (scales/chords) in one view simultaneously.
+## Overview
 
-You can invert them and copy a pattern two show two or more fretboards at the same time.
+Guitar Trainer is a browser-based visualizer for scale and chord shapes. It is designed for practice sessions where you want to compare two patterns, inspect how chords sit inside scales, and move quickly between related views without losing context.
 
-When a scale is selected, matching chords are selectable below (just try it).
+## Features
 
-When a chord is selected, matching scales are selectable below.
+- Overlays two patterns on the same fretboard for direct comparison
+- Lets you invert, copy, hide, or delete pattern layers during a session
+- Shows related chords for a selected scale and related scales for a selected chord
+- Includes optional piano visualization alongside the fretboard view
+- Supports legend toggling for a cleaner practice layout
+- Persists UI state in `localStorage`
+- Includes generated scale, triad, and tetrad relationships in the data model
 
-Don't miss the "hide legends" checkbox on the top right - perfect learning setup.
+## Tech Stack
 
-Text me if you're interested in further features (vini96@web.de).
+- React
+- TypeScript
+- Zustand
+- Create React App
+- Static GitHub Pages deployment
 
+## Local Development
 
-## Possible next steps (Postponed until I see use for it)
+1. Install dependencies:
 
-Add missing chords and scales (I will add them when I want to learn them).
+   ```bash
+   npm install
+   ```
 
-Allow interval symbols.
+2. Start the development server on Windows:
 
-Allow sharp or flat symbol preference.
+   ```bash
+   npm start
+   ```
 
-Redesign and create bigger UI concept.
+The current `start` script uses Windows shell syntax and defaults to port `3003`.
 
-Implement left handed support.
+## Production Preview
 
-Allow multiple fretboards simultaneously. CHECK
+Build the app with:
 
-Turn colors on/off (and make legend -> interval or note colors?).
+```bash
+npm run build
+```
 
-Save UI state to localStorage. CHECK
+If you want to serve the generated build locally, the repository includes [`host.js`](host.js), which serves the `build/` directory on port `8004`.
 
-Show triads and tetrads (and more) for scales. CHECK
+## Project Direction
 
-Correct english/german naming.
-
-Implement UI for more string instruments and different tunings.
-
-## Hint
-
-Press F12 to see the datastructure in the console.
-
-Most functionality is present already, but not implemented in the UI.
-
-Life is short,
-and art long.
-
-Stay tuned. Music is love.
+This repository is a practical study tool first: small, fast to iterate on, and centered around pattern fluency rather than curriculum or content management.
